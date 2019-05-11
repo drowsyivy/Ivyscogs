@@ -3,7 +3,7 @@
   "bot_version": [3,0,1],
   "install_msg" : "Congrats on installing Ivyutils, a completely useless plugin! You sure you don't need some professional `[p]help`?",
   "short" : "Random utility commands",
-  "description" : "Displays a random image board entry based on your query \n This may include NSFW content (although this is not the case by default)",
+  "description" : "Provides various commands for calculating assorted variables.",
   "tags" : ["chiptune","calculations","utilities"],
   "requirements" : [],
   "hidden" : false
