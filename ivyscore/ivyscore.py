@@ -26,13 +26,13 @@ from redbot.core.data_manager import cog_data_path
 # Checks from Bulbaspot
 def shiptoast_check(self, message):
     """Checks whether the message object is in a shiptoast chat."""
-    await with self.config.guild(ctx.guild).shiptoast as shiptoast: 
+    async with self.config.guild(ctx.guild).shiptoast as shiptoast: 
         return (message.channel.id in shiptoast) or (message.channel.name in shiptoast) or message.channel.is_private
 
 
 def not_shiptoast_check(self, message):
     """Checks whether the message object is not in a shiptoast chat."""
-    await with self.config.guild(ctx.guild).shiptoast as shiptoast:
+    async with self.config.guild(ctx.guild).shiptoast as shiptoast:
         return not ((message.channel.id in shiptoast) or (message.channel.name in shiptoast))
 
 
@@ -800,7 +800,7 @@ class Ivyscore:
                 channel_name = ctx.message.channel.name
         else:
             channel_name = sanitized
-        await with self.config.guild(ctx.guild).shiptoast as shiptoast:
+        async with self.config.guild(ctx.guild).shiptoast as shiptoast:
             shiptoast.append(channel_name)
         yield from self.bot.say("Channel {} added.".format(channel_name))
 
@@ -817,7 +817,7 @@ class Ivyscore:
         else:
             channel_name = sanitized
 
-        await with self.config.guild(ctx.guild).shiptoast as shiptoast:
+        async with self.config.guild(ctx.guild).shiptoast as shiptoast:
             if channel_name in shiptoast:
                 shiptoast.remove(channel_name)
                 yield from self.bot.say("Channel {} removed.".format(channel_name))
