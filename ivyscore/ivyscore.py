@@ -22,6 +22,8 @@ from redbot.core import Config, checks, commands
 from redbot.core.data_manager import bundled_data_path
 from redbot.core.data_manager import cog_data_path
 
+Cog: Any = getattr(commands, "Cog", object)
+
 
 # Checks from Bulbaspot
 async def shiptoast_check(self, message):
@@ -501,7 +503,7 @@ def minesweeper_gen(mines: int = 25, rows: int = 4, columns: int = 6):
         return minesweeper_gen()
 
 
-class Ivyscore:
+class Ivyscore(Cog):
     """Ivysalt's misc. commands ported over from the old Bulbaspot. Please don't abuse."""
 
     def __init__(self, bot):
