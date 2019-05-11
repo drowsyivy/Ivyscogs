@@ -29,13 +29,13 @@ Cog: Any = getattr(commands, "Cog", object)
 # Checks from Bulbaspot
 async def shiptoast_check(self, message):
     """Checks whether the message object is in a shiptoast chat."""
-    async with self.config.guild(ctx.guild).shiptoast as shiptoast: 
+    async with self.config.guild(self.ctx.guild).shiptoast as shiptoast: 
         return (message.channel.id in shiptoast) or (message.channel.name in shiptoast) or message.channel.is_private
 
 
 async def not_shiptoast_check(self, message):
     """Checks whether the message object is not in a shiptoast chat."""
-    async with self.config.guild(ctx.guild).shiptoast as shiptoast:
+    async with self.config.guild(self.ctx.guild).shiptoast as shiptoast:
         return not ((message.channel.id in shiptoast) or (message.channel.name in shiptoast))
 
 
