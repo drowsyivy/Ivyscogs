@@ -30,7 +30,7 @@ Cog: Any = getattr(commands, "Cog", object)
 async def shiptoast_check(self, ctx):
     """Checks whether the message object is in a shiptoast chat."""
     async with self.config.guild(ctx.guild).shiptoast() as shiptoast: 
-        return (ctx.channel.id in shiptoast) or (ctx.channel.name in shiptoast) or (type(ctx.channel) is PrivateChannel)
+        return (ctx.channel.id in shiptoast) or (ctx.channel.name in shiptoast) or (type(ctx.channel) is DMChannel) or (type(ctx.channel) is GroupChannel)
 
 
 async def not_shiptoast_check(self, ctx):
