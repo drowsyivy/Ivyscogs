@@ -24,15 +24,13 @@ from redbot.core.data_manager import cog_data_path
 
 
 # Checks from Bulbaspot
-@asyncio.coroutine
-def shiptoast_check(self, message):
+async def shiptoast_check(self, message):
     """Checks whether the message object is in a shiptoast chat."""
     async with self.config.guild(ctx.guild).shiptoast as shiptoast: 
         return (message.channel.id in shiptoast) or (message.channel.name in shiptoast) or message.channel.is_private
 
 
-@asyncio.coroutine
-def not_shiptoast_check(self, message):
+async def not_shiptoast_check(self, message):
     """Checks whether the message object is not in a shiptoast chat."""
     async with self.config.guild(ctx.guild).shiptoast as shiptoast:
         return not ((message.channel.id in shiptoast) or (message.channel.name in shiptoast))
