@@ -532,7 +532,7 @@ class Ivyscore:
     def zalgo(self, ctx, *, message):
         """spoopy
         This is a shiptoast command and will not work on some channels."""
-        is_shiptoast = yield from shiptoast_check((self, ctx.message)))
+        is_shiptoast = yield from shiptoast_check((self, ctx.message))
         if (is_shiptoast):
             yield from self.bot.say(zalgo_gen(message))
 
