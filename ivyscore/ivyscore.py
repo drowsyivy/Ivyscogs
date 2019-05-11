@@ -16,7 +16,7 @@ import random
 from random import randint
 from string import ascii_letters, digits
 
-from discord.enums import ChannelType
+import discord.enums
 
 from redbot.core import Config, checks, commands
 from redbot.core.data_manager import bundled_data_path
@@ -30,7 +30,7 @@ Cog: Any = getattr(commands, "Cog", object)
 async def shiptoast_check(self, ctx):
     """Checks whether the message object is in a shiptoast chat."""
     async with self.config.guild(ctx.guild).shiptoast() as shiptoast: 
-        return (ctx.channel.id in shiptoast) or (ctx.channel.name in shiptoast) or (type(ctx.channel) is not TextChannel)
+        return (ctx.channel.id in shiptoast) or (ctx.channel.name in shiptoast) or (type(ctx.channel) is discord.PrivateChannel)
 
 
 async def not_shiptoast_check(self, ctx):
