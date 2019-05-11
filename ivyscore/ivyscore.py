@@ -30,7 +30,7 @@ Cog: Any = getattr(commands, "Cog", object)
 async def shiptoast_check(self, ctx):
     """Checks whether the message object is in a shiptoast chat."""
     async with self.config.guild(ctx.guild).shiptoast() as shiptoast: 
-        return (ctx.channel.id in shiptoast) or (ctx.channel.name in shiptoast) or ctx.channel.is_private
+        return (ctx.channel.id in shiptoast) or (ctx.channel.name in shiptoast) or (type(ctx.channel) is PrivateChannel)
 
 
 async def not_shiptoast_check(self, ctx):
@@ -251,14 +251,14 @@ def fucc():
 def find_user(ctx, name):
     """Finds the user mentioned in a message."""
     if (name is None):
-        user_object = ctx.message.author
-    elif (len(ctx.message.mentions) >= 1):
-        user_object = ctx.message.mentions[0]
+        user_object = ctx.author
+    elif (len(ctx.mentions) >= 1):
+        user_object = ctx.mentions[0]
     else:
-        if ctx.message.channel.type == ChannelType.text:
-            user_object = ctx.message.server.get_member_named(name)
+        if ctx.channel.type == ChannelType.text:
+            user_object = ctx.guild.get_member_named(name)
         else:
-            return None # You can't search members if you're not in a server.
+            return None # You can't search members if you're not in a guild.
     return user_object
 
 
@@ -289,8 +289,8 @@ def dicksize_gen(self, ctx, name: str):
         else:
             level = 20
 
-        # Displays nick if possible (in server text channel), displays username if not
-        if ctx.message.channel.type == ChannelType.text:
+        # Displays nick if possible (in guild text channel), displays username if not
+        if ctx.channel.type == ChannelType.text:
             display_name = (user_object.nick or user_object.name)
         else:
             display_name = user_object.name
@@ -310,7 +310,7 @@ def dicksize_gen(self, ctx, name: str):
         elif (level >= 90 and level <= 99): response += "HOLY FUCKING SHIT WHAT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         else: response += "this isn't supposed to happen call dpc :DDDDD"
     else:
-        if ctx.message.channel.type == ChannelType.text:
+        if ctx.channel.type == ChannelType.text:
             response = "You're dreaming of dicks again idiot that user doesn't exist in here >:C"
         else:
             response = "Error: You can't search for dicks when you're surrounded by privates!"
@@ -321,7 +321,7 @@ def gaytest_gen(ctx, name: str):
     """Calculates "gayness" based on user ID. Takes either a mention or a username."""
     user_object = find_user(ctx, name)
     if (user_object is not None):
-        if ctx.message.channel.type == ChannelType.text:
+        if ctx.channel.type == ChannelType.text:
             display_name = (user_object.nick or user_object.name)
         else:
             display_name = user_object.name
@@ -343,7 +343,7 @@ def gaytest_gen(ctx, name: str):
         elif (level == 100): response += "DING DING DING DING!!!! err... i mean DONG DONG DONG DONG!!!! WE FOUND THE MOST GAY PERSON EVER!!!! !!! !!!! ! EVERYONE CONGRATULATE THIS FAG!!!"
         else: response += "wat something went wrong call the fire dept lmao :DDDDD"
     else:
-        if ctx.message.channel.type == ChannelType.text:
+        if ctx.channel.type == ChannelType.text:
             response = "awwww your platonic love doesn't actually exist, wake up f00l >:C"
         else:
             response = "Error: sliding under DMs doesn't help you find any partners!"
@@ -354,7 +354,7 @@ def rate_gen(ctx, name: str):
     """Calculates a bot's rating of a user based on user ID. Takes either a mention or a username."""
     user_object = find_user(ctx, name)
     if (user_object is not None):
-        if ctx.message.channel.type == ChannelType.text:
+        if ctx.channel.type == ChannelType.text:
             display_name = (user_object.nick or user_object.name)
         else:
             display_name = user_object.name
@@ -378,7 +378,7 @@ def rate_gen(ctx, name: str):
             #response += (user_object.nick or user_object.name) + ": hey handsome ;))) you know my rating for you, you're a solid **123456789876543210/10** ;))) good luck with the ladies tonight ;))))))"
             response = (user_object.nick or user_object.name) + ": you're faec is so ugly ;))) go eat a raw used rotten condom, maybe that will solve your issues"
     else:
-        if ctx.message.channel.type == ChannelType.text:
+        if ctx.channel.type == ChannelType.text:
             response = "dude lay off the drugs, you're seeing things, that person is not actually there"
         else:
             response = "Error: sliding into DMs doesn't help you find any partners!"
@@ -387,8 +387,8 @@ def rate_gen(ctx, name: str):
 
 def kill_gen(ctx):
     """Calculates a bot's rating of a user based on user ID. Takes either a mention or a username."""
-    user_object = ctx.message.author
-    if ctx.message.channel.type == ChannelType.text:
+    user_object = ctx.author
+    if ctx.channel.type == ChannelType.text:
         display_name = (user_object.nick or user_object.name)
     else:
         display_name = user_object.name
@@ -759,7 +759,7 @@ class Ivyscore(Cog):
 
 
     @commands.command(pass_context=True, hidden = True,
-        description='WARNING: THIS WILL DRIVE YOUR SERVER INSANE', aliases=["metaltts"])
+        description='WARNING: THIS WILL DRIVE YOUR guild INSANE', aliases=["metaltts"])
     async def metal_tts(self, ctx):
         """Generates text metal.
         This command only works in certain channels."""
@@ -772,7 +772,7 @@ class Ivyscore(Cog):
 
 
     @commands.command(pass_context=True, hidden = True,
-        description='WARNING: THIS WILL DRIVE YOUR SERVER INSANE')
+        description='WARNING: THIS WILL DRIVE YOUR guild INSANE')
     async def violin(self, ctx):
         """What is a violin."""
         is_shiptoast = await shiptoast_check(self, ctx)
@@ -785,18 +785,21 @@ class Ivyscore(Cog):
     async def addshiptoast(self, ctx, channel: str = None):
         """Adds a channel name to the list of shiptoast channels.
         Without a channel specified, it will add the current channel."""
-        sanitized = name_sanitize(channel)
-        if sanitized is None:
-            if ctx.message.channel.name in self.settings["shiptoast"]:
-                await self.bot.say("This channel is already in the shiptoast list!")
-                return
-            else:
-                channel_name = ctx.message.channel.name
+        if (ctx.channel is PrivateChannel):
+            await self.bot.say("You can't add channels when you're not in a server, silly!".format(channel_name))
         else:
-            channel_name = sanitized
-        async with self.config.guild(ctx.guild).shiptoast() as shiptoast:
-            shiptoast.append(channel_name)
-        await self.bot.say("Channel {} added.".format(channel_name))
+            sanitized = name_sanitize(channel)
+            async with self.config.guild(ctx.guild).shiptoast() as shiptoast:
+                if sanitized is None:
+                    if ctx.channel.name in shiptoast:
+                        await self.bot.say("This channel is already in the shiptoast list!")
+                        return
+                    else:
+                        channel_name = ctx.channel.name
+                else:
+                    channel_name = sanitized
+                shiptoast.append(channel_name)
+            await self.bot.say("Channel {} added.".format(channel_name))
 
 
     @commands.command(pass_context=True, aliases=["del_shiptoast"])
@@ -806,16 +809,19 @@ class Ivyscore(Cog):
         Without a channel specified, it will remove the current channel."""
         sanitized = name_sanitize(channel)
         if sanitized is None:
-            channel_name = ctx.message.channel.name
+            channel_name = ctx.channel.name
         else:
             channel_name = sanitized
 
-        async with self.config.guild(ctx.guild).shiptoast() as shiptoast:
-            if channel_name in shiptoast:
-                shiptoast.remove(channel_name)
-                await self.bot.say("Channel {} removed.".format(channel_name))
-            else:
-                await self.bot.say("Channel {} not found in list.".format(channel_name))
+        if (ctx.channel is PrivateChannel):
+            await self.bot.say("You can't delete channels when you're not in a server, silly!".format(channel_name))
+        else:
+            async with self.config.guild(ctx.guild).shiptoast() as shiptoast:
+                if channel_name in shiptoast:
+                    shiptoast.remove(channel_name)
+                    await self.bot.say("Channel {} removed.".format(channel_name))
+                else:
+                    await self.bot.say("Channel {} not found in list.".format(channel_name))
 
 
     @commands.command(pass_context=True, aliases=['triple_a','aaa'])
