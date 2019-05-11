@@ -1109,8 +1109,8 @@ class Ivyscore:
 
     @asyncio.coroutine
     def on_message(self, message):
-        is_shiptoast = (yield from shiptoast_check((self, message)))
-        if (message.author != self.bot.user) and is_shiptoast):
+        is_shiptoast = yield from shiptoast_check(self, message)
+        if (message.author != self.bot.user) and is_shiptoast:
             if (message.content.lower().find("case in point") != -1):
                 yield from self.bot.send_message(message.channel, '\uD83D\uDC49\uD83D\uDCBC point in case')
             elif (message.content.lower().find("noticable") != -1):
