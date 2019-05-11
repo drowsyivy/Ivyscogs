@@ -524,6 +524,7 @@ class Ivyscore:
         }
         self.config.register_global(**default_global)
         self.config.register_guild(**default_guild)
+        self.copypastas = bundled_data_path(self) / "copypastas.json"
 
 
     @commands.command(pass_context=True)
@@ -543,7 +544,7 @@ class Ivyscore:
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
-            yield from self.bot.say(random.choice(copypastas["kenm"]))
+            yield from self.bot.say(random.choice(self.copypastas["kenm"]))
 
 
     @commands.group(pass_context=True, aliases=["adggfjggfafafafa"])
@@ -553,7 +554,7 @@ class Ivyscore:
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
-            yield from self.bot.say("adnre: " + random.choice(copypastas["adnre"]))
+            yield from self.bot.say("adnre: " + random.choice(self.copypastas["adnre"]))
 
 
     @commands.group(pass_context=True, hidden=True)
@@ -563,7 +564,7 @@ class Ivyscore:
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
-            yield from self.bot.say("Brie: " + random.choice(copypastas["brie"]))
+            yield from self.bot.say("Brie: " + random.choice(self.copypastas["brie"]))
 
 
     @commands.group(pass_context=True, hidden=True,
@@ -574,7 +575,7 @@ class Ivyscore:
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
-            yield from self.bot.say("m9m: " + random.choice(copypastas["melon"]))
+            yield from self.bot.say("m9m: " + random.choice(self.copypastas["melon"]))
 
 
     @commands.group(pass_context=True, hidden=True)
@@ -584,7 +585,7 @@ class Ivyscore:
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
-            yield from self.bot.say("Misty: " + random.choice(copypastas["misty"]))
+            yield from self.bot.say("Misty: " + random.choice(self.copypastas["misty"]))
 
 
     @commands.group(pass_context=True, hidden=True, aliases=["sen-pi","senpee"])
@@ -594,7 +595,7 @@ class Ivyscore:
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
-            yield from self.bot.say("sen-pi: " + random.choice(copypastas["senpi"]))
+            yield from self.bot.say("sen-pi: " + random.choice(self.copypastas["senpi"]))
 
 
     @commands.group(pass_context=True)
@@ -604,7 +605,7 @@ class Ivyscore:
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
-            yield from self.bot.say(random.choice(copypastas["bulbaquotes"]))
+            yield from self.bot.say(random.choice(self.copypastas["bulbaquotes"]))
 
 
     @commands.command(pass_context=True)
@@ -612,9 +613,9 @@ class Ivyscore:
     def cheng(self, ctx):
         """Cheng generator
         This is a shiptoast command and will not work on some channels."""
-        cheng = (random.choice(copypastas["cheng_intro"])
-                + random.choice(copypastas["cheng_middle"])
-                + random.choice(copypastas["cheng_end"]))
+        cheng = (random.choice(self.copypastas["cheng_intro"])
+                + random.choice(self.copypastas["cheng_middle"])
+                + random.choice(self.copypastas["cheng_end"]))
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
             yield from self.bot.say(cheng)
@@ -627,7 +628,7 @@ class Ivyscore:
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
-            yield from self.bot.say(random.choice(copypastas["deward"]))
+            yield from self.bot.say(random.choice(self.copypastas["deward"]))
 
 
     @commands.command(pass_context=True)
@@ -637,7 +638,7 @@ class Ivyscore:
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
-            yield from self.bot.say(random.choice(copypastas["howard"]))
+            yield from self.bot.say(random.choice(self.copypastas["howard"]))
 
 
     @commands.command(pass_context=True)
@@ -647,7 +648,7 @@ class Ivyscore:
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
-            yield from self.bot.say("``" + random.choice(copypastas["cues"]) + "``")
+            yield from self.bot.say("``" + random.choice(self.copypastas["cues"]) + "``")
 
 
     @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["cahtts"])
@@ -657,7 +658,7 @@ class Ivyscore:
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
-            yield from self.bot.say(random.choice(copypastas["cues"]), tts=True)
+            yield from self.bot.say(random.choice(self.copypastas["cues"]), tts=True)
 
 
     @commands.command(pass_context=True,aliases=["meriosjournal"])
@@ -669,11 +670,11 @@ class Ivyscore:
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
             if choice < 1:
-                choice = randint(1, len(copypastas["merio"]))
-            if choice > len(copypastas["merio"]):
-                yield from self.bot.say("Sorry, that entry doesn't exist yet. The latest entry is number {}.".format(len(copypastas["merio"])))
+                choice = randint(1, len(self.copypastas["merio"]))
+            if choice > len(self.copypastas["merio"]):
+                yield from self.bot.say("Sorry, that entry doesn't exist yet. The latest entry is number {}.".format(len(self.copypastas["merio"])))
                 return
-            yield from self.bot.say(copypastas["merio"][choice-1])
+            yield from self.bot.say(self.copypastas["merio"][choice-1])
 
 
     @commands.command(pass_context=True,aliases=["ivy"])
@@ -685,11 +686,11 @@ class Ivyscore:
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
             if choice < 1:
-                choice = randint(1, len(copypastas["ivyslog"]))
-            if choice > len(copypastas["ivyslog"]):
-                yield from self.bot.say("Sorry, that entry doesn't exist yet. The latest entry is number {}.".format(len(copypastas["ivyslog"])))
+                choice = randint(1, len(self.copypastas["ivyslog"]))
+            if choice > len(self.copypastas["ivyslog"]):
+                yield from self.bot.say("Sorry, that entry doesn't exist yet. The latest entry is number {}.".format(len(self.copypastas["ivyslog"])))
                 return
-            yield from self.bot.say(copypastas["ivyslog"][choice-1])
+            yield from self.bot.say(self.copypastas["ivyslog"][choice-1])
 
 
     @commands.group(pass_context=True)
@@ -700,7 +701,7 @@ class Ivyscore:
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
             if ctx.invoked_subcommand is None:
-                yield from self.bot.say(random.choice(copypastas["sloth"]))
+                yield from self.bot.say(random.choice(self.copypastas["sloth"]))
     
 
     @sloth.command(pass_context=True)
@@ -710,7 +711,7 @@ class Ivyscore:
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
-            yield from self.bot.say(copypastas["sloth"][0])
+            yield from self.bot.say(self.copypastas["sloth"][0])
 
 
     @commands.command(pass_context=True,aliases=["nomanssky","nomansky"])
@@ -720,7 +721,7 @@ class Ivyscore:
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
         if (True):
-            yield from self.bot.say(random.choice(copypastas["nms"]))
+            yield from self.bot.say(random.choice(self.copypastas["nms"]))
 
 
     @commands.command(pass_context=True,aliases=["minimacro"])
