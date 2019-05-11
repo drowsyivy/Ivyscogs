@@ -33,7 +33,7 @@ async def shiptoast_check(self, ctx):
         if type(ctx.channel) is discord.abc.PrivateChannel:
             return True
         else:
-            return ((ctx.channel.id in shiptoast) or (ctx.channel.name in shiptoast)
+            return (ctx.channel.id in shiptoast) or (ctx.channel.name in shiptoast)
 
 
 async def not_shiptoast_check(self, ctx):
