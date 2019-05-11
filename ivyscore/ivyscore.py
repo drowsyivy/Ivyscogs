@@ -794,15 +794,14 @@ class Ivyscore(Cog):
             sanitized = name_sanitize(channel)
             async with self.config.guild(ctx.guild).shiptoast() as shiptoast:
                 if sanitized is "":
-                    if ctx.channel.name in shiptoast:
-                        await ctx.send("This channel is already in the shiptoast list!")
-                        return
-                    else:
-                        channel_name = ctx.channel.name
+                    channel_name = ctx.channel.name
                 else:
                     channel_name = sanitized
-                shiptoast.append(channel_name)
-            await ctx.send("Channel {} added.".format(channel_name))
+                if ctx.channel.name in shiptoast:
+                    await ctx.send("This channel is already in the shiptoast list!")
+                else:
+                    shiptoast.append(channel_name)
+                    await ctx.send("Channel {} added.".format(channel_name))
 
 
     @commands.command(pass_context=True, aliases=["del_shiptoast"])
