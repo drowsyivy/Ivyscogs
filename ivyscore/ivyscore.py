@@ -29,13 +29,13 @@ Cog: Any = getattr(commands, "Cog", object)
 # Checks from Bulbaspot
 async def shiptoast_check(self, ctx):
     """Checks whether the message object is in a shiptoast chat."""
-    async with self.config.guild(ctx.guild).shiptoast as shiptoast: 
+    async with self.config.guild(ctx.guild).shiptoast() as shiptoast: 
         return (ctx.message.channel.id in shiptoast) or (ctx.message.channel.name in shiptoast) or ctx.message.channel.is_private
 
 
 async def not_shiptoast_check(self, ctx):
     """Checks whether the message object is not in a shiptoast chat."""
-    async with self.config.guild(ctx.guild).shiptoast as shiptoast:
+    async with self.config.guild(ctx.guild).shiptoast() as shiptoast:
         return not ((ctx.message.channel.id in shiptoast) or (ctx.message.channel.name in shiptoast))
 
 
@@ -794,7 +794,7 @@ class Ivyscore(Cog):
                 channel_name = ctx.message.channel.name
         else:
             channel_name = sanitized
-        async with self.config.guild(ctx.guild).shiptoast as shiptoast:
+        async with self.config.guild(ctx.guild).shiptoast() as shiptoast:
             shiptoast.append(channel_name)
         await self.bot.say("Channel {} added.".format(channel_name))
 
@@ -810,7 +810,7 @@ class Ivyscore(Cog):
         else:
             channel_name = sanitized
 
-        async with self.config.guild(ctx.guild).shiptoast as shiptoast:
+        async with self.config.guild(ctx.guild).shiptoast() as shiptoast:
             if channel_name in shiptoast:
                 shiptoast.remove(channel_name)
                 await self.bot.say("Channel {} removed.".format(channel_name))
