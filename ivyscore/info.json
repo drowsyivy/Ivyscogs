@@ -1,0 +1,10 @@
+{
+  "author" : ["drowsyivy"],
+  "bot_version": [3,0,1],
+  "install_msg" : "Congrats on installing Ivyscore, a completely useless plugin! You sure you don't need some professional `[p]help`?",
+  "short" : "Random badposting commands",
+  "description" : "100% useless badposting plugin. You're probably looking for one of the other cogs.",
+  "tags" : ["badposting","fun","games"],
+  "requirements" : [],
+  "hidden" : false
+}
