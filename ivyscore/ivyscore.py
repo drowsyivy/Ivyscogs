@@ -30,7 +30,8 @@ Cog: Any = getattr(commands, "Cog", object)
 async def shiptoast_check(self, ctx):
     """Checks whether the message object is in a shiptoast chat."""
     async with self.config.guild(ctx.guild).shiptoast() as shiptoast: 
-        return (ctx.channel.id in shiptoast) or (ctx.channel.name in shiptoast) or (type(ctx.channel) is discord.abc.PrivateChannel)
+        # we're relying on Python's lazy evaluation here (:
+        return (type(ctx.channel) is discord.abc.PrivateChannel) or (ctx.channel.id in shiptoast) or (ctx.channel.name in shiptoast)
 
 
 async def not_shiptoast_check(self, ctx):
@@ -785,7 +786,7 @@ class Ivyscore(Cog):
     async def addshiptoast(self, ctx, channel: str = None):
         """Adds a channel name to the list of shiptoast channels.
         Without a channel specified, it will add the current channel."""
-        if (ctx.channel is PrivateChannel):
+        if (ctx.channel is discord.abc.PrivateChannel):
             await self.bot.say("You can't add channels when you're not in a server, silly!".format(channel_name))
         else:
             sanitized = name_sanitize(channel)
@@ -813,7 +814,7 @@ class Ivyscore(Cog):
         else:
             channel_name = sanitized
 
-        if (ctx.channel is PrivateChannel):
+        if (ctx.channel is discord.abc.PrivateChannel):
             await self.bot.say("You can't delete channels when you're not in a server, silly!".format(channel_name))
         else:
             async with self.config.guild(ctx.guild).shiptoast() as shiptoast:
@@ -1064,17 +1065,17 @@ class Ivyscore(Cog):
 
     async def on_message(self, ctx):
         is_shiptoast = await shiptoast_check(self, ctx)
-        if (message.author != self.bot.user) and is_shiptoast:
-            if (message.content.lower().find("case in point") != -1):
-                await self.bot.send_message(message.channel, '\uD83D\uDC49\uD83D\uDCBC point in case')
-            elif (message.content.lower().find("noticable") != -1):
-                await self.bot.send_message(message.channel, 'notiwire >:C')
-            elif (message.content.lower().find("staph") != -1):
-                await self.bot.send_message(message.channel, 'ylococcus')
-            elif (message.content.lower().find("i could care less") != -1):
-                await self.bot.send_message(message.channel, 'so you actually care? ;)))')
-            elif (message.channel.id != "222432649472376832"):
-                if ("cum" in message.content.lower().split()):
-                    await self.bot.send_message(message.channel, 'oi mate watch your fuckin language')
-                elif (message.content.lower().startswith('ok')):
-                    await self.bot.send_message(message.channel, 'ok')
+        if (ctx.author != self.bot.user) and is_shiptoast:
+            if (ctx.content.lower().find("case in point") != -1):
+                await self.bot.send_message(ctx.channel, '\uD83D\uDC49\uD83D\uDCBC point in case')
+            elif (ctx.content.lower().find("noticable") != -1):
+                await self.bot.send_message(ctx.channel, 'notiwire >:C')
+            elif (ctx.content.lower().find("staph") != -1):
+                await self.bot.send_message(ctx.channel, 'ylococcus')
+            elif (ctx.content.lower().find("i could care less") != -1):
+                await self.bot.send_message(ctx.channel, 'so you actually care? ;)))')
+            elif (type(ctx.channel) is discord.abc.TextChannel and ctx.id != "222432649472376832"):
+                if ("cum" in ctx.content.lower().split()):
+                    await self.bot.send_message(ctx.channel, 'oi mate watch your fuckin language')
+                elif (ctx.content.lower().startswith('ok')):
+                    await self.bot.send_message(ctx.channel, 'ok')
