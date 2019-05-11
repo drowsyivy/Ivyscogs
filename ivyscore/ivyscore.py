@@ -785,7 +785,7 @@ class Ivyscore(Cog):
 
     @commands.command(pass_context=True, aliases=["add_shiptoast"])
     @checks.admin_or_permissions(manage_guild=True)
-    async def addshiptoast(self, ctx, channel: str = None):
+    async def addshiptoast(self, ctx, channel: str = ""):
         """Adds a channel name to the list of shiptoast channels.
         Without a channel specified, it will add the current channel."""
         if (ctx.channel is discord.abc.PrivateChannel):
@@ -807,7 +807,7 @@ class Ivyscore(Cog):
 
     @commands.command(pass_context=True, aliases=["del_shiptoast"])
     @checks.admin_or_permissions(manage_guild=True)
-    async def delshiptoast(self, ctx, channel: str = None):
+    async def delshiptoast(self, ctx, channel: str = ""):
         """Removes a channel name from the list of shiptoast channels.
         Without a channel specified, it will remove the current channel."""
         sanitized = name_sanitize(channel)
