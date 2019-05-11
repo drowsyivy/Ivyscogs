@@ -21,6 +21,7 @@ from discord.enums import ChannelType
 from redbot.core import Config, checks, commands
 from redbot.core.data_manager import bundled_data_path
 from redbot.core.data_manager import cog_data_path
+from typing import Any
 
 Cog: Any = getattr(commands, "Cog", object)
 
