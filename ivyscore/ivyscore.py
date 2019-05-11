@@ -27,15 +27,15 @@ Cog: Any = getattr(commands, "Cog", object)
 
 
 # Checks from Bulbaspot
-async def shiptoast_check(self, message):
+async def shiptoast_check(self, message, ctx):
     """Checks whether the message object is in a shiptoast chat."""
-    async with self.config.guild(message.ctx.guild).shiptoast as shiptoast: 
+    async with self.config.guild(ctx.guild).shiptoast as shiptoast: 
         return (message.channel.id in shiptoast) or (message.channel.name in shiptoast) or message.channel.is_private
 
 
-async def not_shiptoast_check(self, message):
+async def not_shiptoast_check(self, message, ctx):
     """Checks whether the message object is not in a shiptoast chat."""
-    async with self.config.guild(message.ctx.guild).shiptoast as shiptoast:
+    async with self.config.guild(ctx.guild).shiptoast as shiptoast:
         return not ((message.channel.id in shiptoast) or (message.channel.name in shiptoast))
 
 
@@ -1056,8 +1056,8 @@ class Ivyscore(Cog):
             await self.bot.say("Sorry bud, but my decode won't fit in here. **_: )_**")
 
 
-    async def on_message(self, message):
-        is_shiptoast = await shiptoast_check(self, message)
+    async def on_message(self, message, ctx):
+        is_shiptoast = await shiptoast_check(self, message, ctx)
         if (message.author != self.bot.user) and is_shiptoast:
             if (message.content.lower().find("case in point") != -1):
                 await self.bot.send_message(message.channel, '\uD83D\uDC49\uD83D\uDCBC point in case')
