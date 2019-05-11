@@ -533,8 +533,7 @@ class Ivyscore:
         """spoopy
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = yield from shiptoast_check((self, ctx.message)
-        if (1 > 0):
-            yield from self.bot.say(zalgo_gen(message))
+        yield from self.bot.say(zalgo_gen(message))
 
 
     @commands.group(pass_context=True, aliases=["ken_m"])
