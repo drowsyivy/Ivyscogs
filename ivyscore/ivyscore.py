@@ -30,13 +30,13 @@ Cog: Any = getattr(commands, "Cog", object)
 async def shiptoast_check(self, ctx):
     """Checks whether the message object is in a shiptoast chat."""
     async with self.config.guild(ctx.guild).shiptoast() as shiptoast: 
-        return (ctx.message.channel.id in shiptoast) or (ctx.message.channel.name in shiptoast) or ctx.message.channel.is_private
+        return (ctx.channel.id in shiptoast) or (ctx.channel.name in shiptoast) or ctx.channel.is_private
 
 
 async def not_shiptoast_check(self, ctx):
     """Checks whether the message object is not in a shiptoast chat."""
     async with self.config.guild(ctx.guild).shiptoast() as shiptoast:
-        return not ((ctx.message.channel.id in shiptoast) or (ctx.message.channel.name in shiptoast))
+        return not ((ctx.channel.id in shiptoast) or (ctx.channel.name in shiptoast))
 
 
 def name_sanitize(name):
