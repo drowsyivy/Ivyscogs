@@ -1068,15 +1068,15 @@ class Ivyscore(Cog):
         is_shiptoast = await shiptoast_check(self, ctx)
         if (ctx.author != self.bot.user) and is_shiptoast:
             if (ctx.content.lower().find("case in point") != -1):
-                await ctx.send(ctx.channel, '\uD83D\uDC49\uD83D\uDCBC point in case')
+                await ctx.send('\uD83D\uDC49\uD83D\uDCBC point in case')
             elif (ctx.content.lower().find("noticable") != -1):
-                await ctx.send(ctx.channel, 'notiwire >:C')
+                await ctx.send('notiwire >:C')
             elif (ctx.content.lower().find("staph") != -1):
-                await ctx.send(ctx.channel, 'ylococcus')
+                await ctx.send('ylococcus')
             elif (ctx.content.lower().find("i could care less") != -1):
-                await ctx.send(ctx.channel, 'so you actually care? ;)))')
-            elif (type(ctx.channel) is discord.TextChannel and ctx.id != "222432649472376832"):
+                await ctx.send('so you actually care? ;)))')
+            elif (type(ctx.channel) is discord.TextChannel and ctx.id != 222432649472376832):
                 if ("cum" in ctx.content.lower().split()):
-                    await ctx.send(ctx.channel, 'oi mate watch your fuckin language')
+                    await ctx.send('oi mate watch your fuckin language')
                 elif (ctx.content.lower().startswith('ok')):
-                    await ctx.send(ctx.channel, 'ok')
+                    await ctx.send('ok')
