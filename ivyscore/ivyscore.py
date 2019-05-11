@@ -29,10 +29,10 @@ Cog: Any = getattr(commands, "Cog", object)
 # Checks from Bulbaspot
 async def shiptoast_check(self, ctx):
     """Checks whether the message object is in a shiptoast chat."""
-    async with self.config.guild(ctx.guild).shiptoast() as shiptoast: 
-        if type(ctx.channel) is discord.abc.PrivateChannel:
-            return True
-        else:
+    if type(ctx.channel) is discord.abc.PrivateChannel:
+        return True
+    else:
+        async with self.config.guild(ctx.guild).shiptoast() as shiptoast: 
             return (ctx.channel.id in shiptoast) or (ctx.channel.name in shiptoast)
 
 
@@ -793,7 +793,7 @@ class Ivyscore(Cog):
         else:
             sanitized = name_sanitize(channel)
             async with self.config.guild(ctx.guild).shiptoast() as shiptoast:
-                if sanitized is None:
+                if sanitized is "":
                     if ctx.channel.name in shiptoast:
                         await ctx.send("This channel is already in the shiptoast list!")
                         return
