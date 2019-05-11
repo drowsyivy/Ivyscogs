@@ -255,7 +255,7 @@ def find_user(ctx, name):
     """Finds the user mentioned in a message."""
     if (name is None):
         user_object = ctx.author
-    elif (len(ctx.mentions) >= 1):
+    elif (len(ctx.message.mentions) >= 1):
         user_object = ctx.mentions[0]
     else:
         if type(ctx.channel) is discord.TextChannel:
@@ -1075,7 +1075,7 @@ class Ivyscore(Cog):
                 await ctx.send(ctx.channel, 'ylococcus')
             elif (ctx.content.lower().find("i could care less") != -1):
                 await ctx.send(ctx.channel, 'so you actually care? ;)))')
-            elif (type(ctx.channel) is discord.abc.TextChannel and ctx.id != "222432649472376832"):
+            elif (type(ctx.channel) is discord.TextChannel and ctx.id != "222432649472376832"):
                 if ("cum" in ctx.content.lower().split()):
                     await ctx.send(ctx.channel, 'oi mate watch your fuckin language')
                 elif (ctx.content.lower().startswith('ok')):
