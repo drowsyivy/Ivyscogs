@@ -256,7 +256,7 @@ def find_user(ctx, name):
     if (name is None):
         user_object = ctx.author
     elif (len(ctx.message.mentions) >= 1):
-        user_object = ctx.mentions[0]
+        user_object = ctx.message.mentions[0]
     else:
         if type(ctx.channel) is discord.TextChannel:
             user_object = ctx.guild.get_member_named(name)
