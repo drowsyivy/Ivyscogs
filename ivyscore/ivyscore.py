@@ -24,12 +24,14 @@ from redbot.core.data_manager import cog_data_path
 
 
 # Checks from Bulbaspot
+@async
 def shiptoast_check(self, message):
     """Checks whether the message object is in a shiptoast chat."""
     async with self.config.guild(ctx.guild).shiptoast as shiptoast: 
         return (message.channel.id in shiptoast) or (message.channel.name in shiptoast) or message.channel.is_private
 
 
+@async
 def not_shiptoast_check(self, message):
     """Checks whether the message object is not in a shiptoast chat."""
     async with self.config.guild(ctx.guild).shiptoast as shiptoast:
@@ -529,7 +531,7 @@ class Ivyscore:
     def zalgo(self, ctx, *, message):
         """spoopy
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say(zalgo_gen(message))
 
 
@@ -538,7 +540,7 @@ class Ivyscore:
     def kenm(self, ctx):
         """kenm screenshot poster.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             if ctx.invoked_subcommand is None:
                 yield from self.bot.say(random.choice(copypastas["kenm"]))
 
@@ -548,7 +550,7 @@ class Ivyscore:
     def adnre(self, ctx):
         """adnre's quote generator.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             if ctx.invoked_subcommand is None:
                 yield from self.bot.say("adnre: " + random.choice(copypastas["adnre"]))
 
@@ -558,7 +560,7 @@ class Ivyscore:
     def brie(self, ctx):
         """Brie's quote generator.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             if ctx.invoked_subcommand is None:
                 yield from self.bot.say("Brie: " + random.choice(copypastas["brie"]))
 
@@ -569,7 +571,7 @@ class Ivyscore:
     def melon(self, ctx):
         """Melon's quote generator.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             if ctx.invoked_subcommand is None:
                 yield from self.bot.say("m9m: " + random.choice(copypastas["melon"]))
 
@@ -579,7 +581,7 @@ class Ivyscore:
     def misty(self, ctx):
         """Misty's quote generator.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             if ctx.invoked_subcommand is None:
                 yield from self.bot.say("Misty: " + random.choice(copypastas["misty"]))
 
@@ -589,7 +591,7 @@ class Ivyscore:
     def senpi(self, ctx):
         """sen-pi's quote generator
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             if ctx.invoked_subcommand is None:
                 yield from self.bot.say("sen-pi: " + random.choice(copypastas["senpi"]))
 
@@ -599,7 +601,7 @@ class Ivyscore:
     def bulba(self, ctx):
         """Bulba's quote generator
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             if ctx.invoked_subcommand is None:
                 yield from self.bot.say(random.choice(copypastas["bulbaquotes"]))
 
@@ -612,7 +614,7 @@ class Ivyscore:
         cheng = (random.choice(copypastas["cheng_intro"])
                 + random.choice(copypastas["cheng_middle"])
                 + random.choice(copypastas["cheng_end"]))
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say(cheng)
 
 
@@ -621,7 +623,7 @@ class Ivyscore:
     def deward(self, ctx):
         """Deward RP quote generator
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["deward"]))
 
 
@@ -630,7 +632,7 @@ class Ivyscore:
     def howard(self, ctx):
         """Howard RP quote generator
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["howard"]))
 
 
@@ -639,7 +641,7 @@ class Ivyscore:
     def cah(self, ctx):
         """Cards against Humanity cue generator.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say("``" + random.choice(copypastas["cues"]) + "``")
 
 
@@ -648,7 +650,7 @@ class Ivyscore:
     def cah_tts(self, ctx):
         """Howard RP quote generator read aloud :P
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["cues"]), tts=True)
 
 
@@ -658,7 +660,7 @@ class Ivyscore:
         """Returns an entry from Merio's journal.
         If no entry number is specified, a random entry will be returned.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             if choice < 1:
                 choice = randint(1, len(copypastas["merio"]))
             if choice > len(copypastas["merio"]):
@@ -673,7 +675,7 @@ class Ivyscore:
         """Ivy's log, the journal absolutely nobody asked for.
         If no entry number is specified, a random entry will be returned.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             if choice < 1:
                 choice = randint(1, len(copypastas["ivyslog"]))
             if choice > len(copypastas["ivyslog"]):
@@ -687,7 +689,7 @@ class Ivyscore:
     def sloth(self, ctx):
         """Sloth quote generator
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             if ctx.invoked_subcommand is None:
                 yield from self.bot.say(random.choice(copypastas["sloth"]))
     
@@ -697,7 +699,7 @@ class Ivyscore:
     def original(self, ctx):
         """Sloth's original!
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say(copypastas["sloth"][0])
 
 
@@ -706,7 +708,7 @@ class Ivyscore:
     def nms(self, ctx):
         """THE ABSOLUTELY CRINGIEST COMMAND EVER
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["nms"]))
 
 
@@ -715,7 +717,7 @@ class Ivyscore:
     def bs(self, ctx):
         """Just... try it ;^D
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say("https://youtu.be/r427LYKA8zY")
 
 
@@ -724,7 +726,7 @@ class Ivyscore:
     def this(self, ctx, length: int = 20):
         """Generates a text penis with a given length.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             this_string = this_gen(length)
             yield from self.bot.say(this_string)
 
@@ -750,7 +752,7 @@ class Ivyscore:
     def fuck(self, ctx):
         """FUCK ON ME!!!!!!!!!!
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say(fucc())
 
 
@@ -759,7 +761,7 @@ class Ivyscore:
     def metal(self, ctx):
         """Generates text metal.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say(metal())
 
 
@@ -769,7 +771,7 @@ class Ivyscore:
     def metal_tts(self, ctx):
         """Generates text metal.
         This command only works in certain channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say("**METAL!**", tts=True)
             yield from self.bot.say(metal_crazy_a(), tts=True)
             yield from self.bot.say("***AND NOW THE SOLO!!!***", tts=True)
@@ -781,7 +783,7 @@ class Ivyscore:
     @asyncio.coroutine
     def violin(self, ctx):
         """What is a violin."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say("The violin (violin) is a kind of a super clean orchestra played to ring carry instruments. It is widely spread all over the world, is the modern orchestra string of the main instrument. In the music it plays very important position, is the pillar of the modern symphony orchestra, but also has the difficult playing skills solo instrument.\n\nThe emergence of modern violin has been 300 years of history, is the western music since the 17th century in one of the most important instruments as the instrument queen, was also the production is itself a gate violin for fine art. The violin beautiful tone, close to a broad range, and the performance is strong, it was born from that day on, he's been in the instrument of significant position, for people loved. If the piano is \"the king of Musical Instruments, then the violin is\" the queen of instruments\".\n\nFor centuries, the world famous composer wrote a lot of violin classic works, violinist in this instrument into the soul, the development of the superb performance art. The violin can concerts and solo.\n\nThe Violin is a string of four bowed instruments, the family is the main members of the family system of other members are: (the viola, the cello and the bass). Modern violin originated from Italian Craig mona, in 1600-1750 years to become the largest violin production center. The famous master making guitars are: Nicola Amati (nicolas, Marty), Antonio Stradivari (Antonio Stella bottom tile), and Giuseppe Guarneri (ji plug pu melon nai); They made instruments so far are priceless. The violins fifth tune: g, d1, a1, e2, register more than three and a half group, is all orchestra indispensable instrument, also after instruments.", tts=True)
 
 
@@ -830,7 +832,7 @@ class Ivyscore:
     def trippleaaa(self, ctx):
         """TrippleAAA in a nutshell.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/190191670304833536/201368263203094528/10a.png")
 
 
@@ -845,7 +847,7 @@ class Ivyscore:
     @asyncio.coroutine
     def genesis(self, ctx):
         """..."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say("Why would someone initiate the genesis of such a horrid contraption?")
 
 
@@ -853,7 +855,7 @@ class Ivyscore:
     @asyncio.coroutine
     def hyena(self, ctx):
         """..."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say("I have never kissed a girl. I have a tendency to lie awake at night and hope that someday that changes, but that would take a miracle. I wish I could go back in time and choose a different set of hobbies, but that probably is not going to happen. If it did, I would spend more time being active. I have a malformed body. I will probably die before my time because I liked to look at television sets and computer monitors instead of admiring the natural beauty of the outdoors. I want to wake up in my bed to the sound of a girl's breathing. I want to feel her body heat at my back. That's me.")
 
 
@@ -862,7 +864,7 @@ class Ivyscore:
     def clap(self, ctx):
         """Displays the Skype clap emote.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say("https://i.imgur.com/3es8mZ6.gif")
 
 
@@ -871,7 +873,7 @@ class Ivyscore:
     def cry(self, ctx):
         """Displays the Skype crying emote.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say("https://puu.sh/l3bnv.gif")
 
 
@@ -908,7 +910,7 @@ class Ivyscore:
     def seal(self, ctx):
         """Displays a seal of approval.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/158305327035449344/159801148642033667/Joltik_Seal_of_Approval.png")
 
 
@@ -917,7 +919,7 @@ class Ivyscore:
     def sleep(self, ctx):
         """Displays a sleeping emote.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/125591492004806656/207330607997386753/leap.gif")
 
 
@@ -926,7 +928,7 @@ class Ivyscore:
     def notfunny(self, ctx):
         """When something just ain't funny.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/202817966570471426/219488871602192384/notfunny.png")
 
 
@@ -935,7 +937,7 @@ class Ivyscore:
     def something(self, ctx):
         """Something happened.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/130833169724342272/202122586740490241/3dtq5QP.png")
 
 
@@ -945,7 +947,7 @@ class Ivyscore:
         """Returns a Woody picture hosted on dpc's website.
         If no number is specified, then a random picture will be retrieved.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             if (woody_count < 1) or (woody_count > 3202):
                 woody_count = randint(1,3201)
             if woody_count in [348, 475, 481, 530, 1492, 1549, 2500]:
@@ -959,7 +961,7 @@ class Ivyscore:
     def animal(self, ctx, animal_count: int = 9001):
         """Returns a random animal GIF hosted on dpc's website.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             if (animal_count < 1) or (animal_count > 104):
                 animal_count = randint(1,104)
             yield from self.bot.say("http://famitracker.org/~dpc/Animal/{}.gif".format(animal_count))
@@ -970,7 +972,7 @@ class Ivyscore:
     def gift(self, ctx):
         """Just... try it.
         This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say("https://www.mattandreko.com/images/brainpan2_preview.png")
 
     @commands.command(pass_context=True,aliases=["penissize","cocksize"])
@@ -988,7 +990,7 @@ class Ivyscore:
         This is a shiptoast command and will not work on some channels.
         Ported by Dog not by dpc send your hate to my twitter >:C
         """
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say(dicksize_gen(self, ctx, name))
 
     @commands.command(pass_context=True,aliases=["gayness","gaylevel"])
@@ -1010,7 +1012,7 @@ class Ivyscore:
         This is a shiptoast command and will not work on some channels.
         Ported by Dog not by dpc send your hate to my twitter >:C
         """
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say(gaytest_gen(ctx, name))
 
     @commands.command(pass_context=True,aliases=["rating"])
@@ -1025,7 +1027,7 @@ class Ivyscore:
         This is a shiptoast command and will not work on some channels.
         Ported by Dog not by dpc send your hate to my twitter >:C
         """
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say(rate_gen(ctx, name))
 
     @commands.command(pass_context=True,aliases=["kms"])
@@ -1034,13 +1036,13 @@ class Ivyscore:
         """
         Use this command to make the bot kill you. You can't make it kill other people that would be murder >:C
         """
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say(kill_gen(ctx))
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def e(self, ctx, *, name: str = None):
-        if (shiptoast_check(self, ctx.message)):
+        if (yield from shiptoast_check((self, ctx.message)):
             yield from self.bot.say(".claimwaifu 420 <@!84701721967726592>")
 
 
@@ -1079,7 +1081,7 @@ class Ivyscore:
 
     @asyncio.coroutine
     def on_message(self, message):
-        if (message.author != self.bot.user) and (shiptoast_check(self, message)):
+        if (message.author != self.bot.user) and (yield from shiptoast_check((self, message)):
             if (message.content.lower().find("case in point") != -1):
                 yield from self.bot.send_message(message.channel, '\uD83D\uDC49\uD83D\uDCBC point in case')
             elif (message.content.lower().find("noticable") != -1):
