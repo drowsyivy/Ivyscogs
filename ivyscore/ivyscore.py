@@ -299,7 +299,7 @@ def dicksize_gen(self, ctx, name: str):
             display_name = user_object.name
 
         # Build the response slowly, I assume this is slow because I am slow, I'm not Sonic who the fuck did you think I was n00b
-        response = display_name + ": " + this_gen(level) + " (" + str(level) + ") - "
+        response = "{}: {} ({}) - ".format(display_name, this_gen(level), str(level))
         if (level == 0): response += "hahahAHAHAH OMG HAHAHAHAAHAH THAT'S FUCKING PATHETIC!!! XD LMFAO WHAT A DAMN LOSER XD XD XD"
         elif (level >= 1 and level <= 9): response += "lol asian dick xD"
         elif (level >= 10 and level <= 19): response += "did u get bullied in school for that cuz that's what I would do lmao"
@@ -330,7 +330,7 @@ def gaytest_gen(ctx, name: str):
             display_name = user_object.name
         level = score_gen(user_object.id, 100, hashlib.sha512())
         # Build the response slowly, I assume this is slow because I am slow, I'm not Sonic who the fuck did you think I was n00b
-        response = display_name + " is... **" + str(level) + "% GAY!** - "
+        response = display_name + " is... **{}% GAY!** - ".format(str(level))
         if (level == 0): response += "wtf who do you think you're fooling, there's no way you're 0% gay >:C"
         elif (level >= 1 and level <= 9): response += "uh dude i'm really sure you're shitting me, such low levels of gayness are not possible on the internet"
         elif (level >= 10 and level <= 19): response += "don't lie to me you've thought of sucking a huge dick at least once in your life"
@@ -364,7 +364,7 @@ def rate_gen(ctx, name: str):
         if (user_object.id != "84701721967726592"):
             level = score_gen(user_object.id, 10, hashlib.sha384())
             # Build the response slowly, I assume this is slow because I am slow, I'm not Sonic who the fuck did you think I was n00b
-            response = display_name + ": I rate you **" + str(level) + "/10** - "
+            response = display_name + ": I rate you **{}/10** - ".format(str(level))
             if (level == 0): response += "you're an ugly piece of shit, go away before i puke on your face >:C"
             elif (level == 1): response += "ewww you smell like shit, go learn to wipe your ass you gross fuck"
             elif (level == 2): response += "your face reminds me of my dog's ass, and tbh that's not a pleasant thing to think of"
@@ -514,11 +514,7 @@ class Ivyscore(Cog):
         self.bot = bot
         self.config = Config.get_conf(self, identifier=12093812093)
         default_global = {
-            "foobar": True,
-            "foo": {
-                "bar": True,
-                "baz": False
-            }
+            "is_self": True
         }
         default_guild = {
             "shiptoast": ['bot-playground', 'shitposting',
@@ -528,10 +524,10 @@ class Ivyscore(Cog):
         }
         self.config.register_global(**default_global)
         self.config.register_guild(**default_guild)
-        self.answer_path = bundled_data_path(self) / "copypastas.json"
+        self.copypastas = bundled_data_path(self) / "copypastas.json"
 
 
-    @commands.command(pass_context=True)
+    @commands.command()
     async def zalgo(self, ctx, *, message):
         """spoopy
         This is a shiptoast command and will not work on some channels."""
@@ -540,119 +536,119 @@ class Ivyscore(Cog):
             await ctx.send(zalgo_gen(message))
 
 
-    @commands.group(pass_context=True, aliases=["ken_m"])
+    @commands.group(aliases=["ken_m"])
     async def kenm(self, ctx):
         """kenm screenshot poster.
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send(random.choice(copypastas["kenm"]))
+            await ctx.send(random.choice(self.copypastas["kenm"]))
 
 
-    @commands.group(pass_context=True, aliases=["adggfjggfafafafa"])
+    @commands.group(aliases=["adggfjggfafafafa"])
     async def adnre(self, ctx):
         """adnre's quote generator.
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send("adnre: " + random.choice(copypastas["adnre"]))
+            await ctx.send("adnre: " + random.choice(self.copypastas["adnre"]))
 
 
-    @commands.group(pass_context=True, hidden=True)
+    @commands.group(hidden=True)
     async def brie(self, ctx):
         """Brie's quote generator.
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send("Brie: " + random.choice(copypastas["brie"]))
+            await ctx.send("Brie: " + random.choice(self.copypastas["brie"]))
 
 
-    @commands.group(pass_context=True, hidden=True,
+    @commands.group(hidden=True,
                     aliases=["m9m","melonadem","meong"])
     async def melon(self, ctx):
         """Melon's quote generator.
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send("m9m: " + random.choice(copypastas["melon"]))
+            await ctx.send("m9m: " + random.choice(self.copypastas["melon"]))
 
 
-    @commands.group(pass_context=True, hidden=True)
+    @commands.group(hidden=True)
     async def misty(self, ctx):
         """Misty's quote generator.
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send("Misty: " + random.choice(copypastas["misty"]))
+            await ctx.send("Misty: " + random.choice(self.copypastas["misty"]))
 
 
-    @commands.group(pass_context=True, hidden=True, aliases=["sen-pi","senpee"])
+    @commands.group(hidden=True, aliases=["sen-pi","senpee"])
     async def senpi(self, ctx):
         """sen-pi's quote generator
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send("sen-pi: " + random.choice(copypastas["senpi"]))
+            await ctx.send("sen-pi: " + random.choice(self.copypastas["senpi"]))
 
 
-    @commands.group(pass_context=True)
+    @commands.group()
     async def bulba(self, ctx):
         """Bulba's quote generator
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send(random.choice(copypastas["bulbaquotes"]))
+            await ctx.send(random.choice(self.copypastas["bulbaquotes"]))
 
 
-    @commands.command(pass_context=True)
+    @commands.command()
     async def cheng(self, ctx):
         """Cheng generator
         This is a shiptoast command and will not work on some channels."""
-        cheng = (random.choice(copypastas["cheng_intro"])
-                + random.choice(copypastas["cheng_middle"])
-                + random.choice(copypastas["cheng_end"]))
+        cheng = (random.choice(self.copypastas["cheng_intro"])
+                + random.choice(self.copypastas["cheng_middle"])
+                + random.choice(self.copypastas["cheng_end"]))
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
             await ctx.send(cheng)
 
 
-    @commands.command(pass_context=True)
+    @commands.command()
     async def deward(self, ctx):
         """Deward RP quote generator
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send(random.choice(copypastas["deward"]))
+            await ctx.send(random.choice(self.copypastas["deward"]))
 
 
-    @commands.command(pass_context=True)
+    @commands.command()
     async def howard(self, ctx):
         """Howard RP quote generator
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send(random.choice(copypastas["howard"]))
+            await ctx.send(random.choice(self.copypastas["howard"]))
 
 
-    @commands.command(pass_context=True)
+    @commands.command()
     async def cah(self, ctx):
         """Cards against Humanity cue generator.
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send("``" + random.choice(copypastas["cues"]) + "``")
+            await ctx.send("``" + random.choice(self.copypastas["cues"]) + "``")
 
 
-    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["cahtts"])
+    @commands.command(hidden=True,description="wait how did you find this lmao",aliases=["cahtts"])
     async def cah_tts(self, ctx):
         """Howard RP quote generator read aloud :P
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send(random.choice(copypastas["cues"]), tts=True)
+            await ctx.send(random.choice(self.copypastas["cues"]), tts=True)
 
 
-    @commands.command(pass_context=True,aliases=["meriosjournal"])
+    @commands.command(aliases=["meriosjournal"])
     async def merio(self, ctx, choice: int = 0):
         """Returns an entry from Merio's journal.
         If no entry number is specified, a random entry will be returned.
@@ -667,7 +663,7 @@ class Ivyscore(Cog):
             await ctx.send(copypastas["merio"][choice-1])
 
 
-    @commands.command(pass_context=True,aliases=["ivy"])
+    @commands.command(aliases=["ivy"])
     async def ivyslog(self, ctx, choice: int = 0):
         """Ivy's log, the journal absolutely nobody asked for.
         If no entry number is specified, a random entry will be returned.
@@ -682,17 +678,17 @@ class Ivyscore(Cog):
             await ctx.send(copypastas["ivyslog"][choice-1])
 
 
-    @commands.group(pass_context=True)
+    @commands.group()
     async def sloth(self, ctx):
         """Sloth quote generator
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
             if ctx.invoked_subcommand is None:
-                await ctx.send(random.choice(copypastas["sloth"]))
+                await ctx.send(random.choice(self.copypastas["sloth"]))
     
 
-    @sloth.command(pass_context=True)
+    @sloth.command()
     async def original(self, ctx):
         """Sloth's original!
         This is a shiptoast command and will not work on some channels."""
@@ -701,16 +697,16 @@ class Ivyscore(Cog):
             await ctx.send(copypastas["sloth"][0])
 
 
-    @commands.command(pass_context=True,aliases=["nomanssky","nomansky"])
+    @commands.command(aliases=["nomanssky","nomansky"])
     async def nms(self, ctx):
         """THE ABSOLUTELY CRINGIEST COMMAND EVER
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send(random.choice(copypastas["nms"]))
+            await ctx.send(random.choice(self.copypastas["nms"]))
 
 
-    @commands.command(pass_context=True,aliases=["minimacro"])
+    @commands.command(aliases=["minimacro"])
     async def bs(self, ctx):
         """Just... try it ;^D
         This is a shiptoast command and will not work on some channels."""
@@ -719,7 +715,7 @@ class Ivyscore(Cog):
             await ctx.send("https://youtu.be/r427LYKA8zY")
 
 
-    @commands.command(pass_context=True,aliases=["dong","penis","cock"])
+    @commands.command(aliases=["dong","penis","cock"])
     async def this(self, ctx, length: int = 20):
         """Generates a text penis with a given length.
         This is a shiptoast command and will not work on some channels."""
@@ -729,21 +725,21 @@ class Ivyscore(Cog):
             await ctx.send(this_string)
 
 
-    @commands.command(pass_context=True)
+    @commands.command()
     async def wow(self, ctx, length: int = 10):
         """Generates an emphatic wow with a given length."""
         wow_string = wow_gen(length)
         await ctx.send(wow_string)
 
 
-    @commands.command(pass_context=True)
+    @commands.command()
     async def minesweeper(self, ctx, mines: int = 25, rows: int = 10, columns: int = 10):
         """Generates a minesweeper board with given number of mines, rows and columns."""
         board = minesweeper_gen(mines, rows, columns)
         await ctx.send(board)
 
 
-    @commands.command(pass_context=True, hidden = True)
+    @commands.command(hidden = True)
     async def fuck(self, ctx):
         """FUCK ON ME!!!!!!!!!!
         This is a shiptoast command and will not work on some channels."""
@@ -752,7 +748,7 @@ class Ivyscore(Cog):
             await ctx.send(fucc())
 
 
-    @commands.command(pass_context=True)
+    @commands.command()
     async def metal(self, ctx):
         """Generates text metal.
         This is a shiptoast command and will not work on some channels."""
@@ -761,7 +757,7 @@ class Ivyscore(Cog):
             await ctx.send(metal())
 
 
-    @commands.command(pass_context=True, hidden = True,
+    @commands.command(hidden = True,
         description='WARNING: THIS WILL DRIVE YOUR guild INSANE', aliases=["metaltts"])
     async def metal_tts(self, ctx):
         """Generates text metal.
@@ -774,7 +770,7 @@ class Ivyscore(Cog):
             await ctx.send("**___~~" + metal_crazy_b() + "~~___**", tts=True)
 
 
-    @commands.command(pass_context=True, hidden = True,
+    @commands.command(hidden = True,
         description='WARNING: THIS WILL DRIVE YOUR guild INSANE')
     async def violin(self, ctx):
         """What is a violin."""
@@ -783,12 +779,12 @@ class Ivyscore(Cog):
             await ctx.send("The violin (violin) is a kind of a super clean orchestra played to ring carry instruments. It is widely spread all over the world, is the modern orchestra string of the main instrument. In the music it plays very important position, is the pillar of the modern symphony orchestra, but also has the difficult playing skills solo instrument.\n\nThe emergence of modern violin has been 300 years of history, is the western music since the 17th century in one of the most important instruments as the instrument queen, was also the production is itself a gate violin for fine art. The violin beautiful tone, close to a broad range, and the performance is strong, it was born from that day on, he's been in the instrument of significant position, for people loved. If the piano is \"the king of Musical Instruments, then the violin is\" the queen of instruments\".\n\nFor centuries, the world famous composer wrote a lot of violin classic works, violinist in this instrument into the soul, the development of the superb performance art. The violin can concerts and solo.\n\nThe Violin is a string of four bowed instruments, the family is the main members of the family system of other members are: (the viola, the cello and the bass). Modern violin originated from Italian Craig mona, in 1600-1750 years to become the largest violin production center. The famous master making guitars are: Nicola Amati (nicolas, Marty), Antonio Stradivari (Antonio Stella bottom tile), and Giuseppe Guarneri (ji plug pu melon nai); They made instruments so far are priceless. The violins fifth tune: g, d1, a1, e2, register more than three and a half group, is all orchestra indispensable instrument, also after instruments.", tts=True)
 
 
-    @commands.command(pass_context=True, aliases=["add_shiptoast"])
+    @commands.command(aliases=["add_shiptoast"])
     @checks.admin_or_permissions(manage_guild=True)
     async def addshiptoast(self, ctx, channel: str = ""):
-        """Adds a channel name to the list of shiptoast channels.
+        """Adds a channel name to the list of shiptoast channels on current server.
         Without a channel specified, it will add the current channel."""
-        if (ctx.channel is discord.abc.PrivateChannel):
+        if (type(ctx.channel) is not discord.TextChannel):
             await ctx.send("You can't add channels when you're not in a server, silly!".format(channel_name))
         else:
             sanitized = name_sanitize(channel)
@@ -804,10 +800,10 @@ class Ivyscore(Cog):
                     await ctx.send("Channel {} added.".format(channel_name))
 
 
-    @commands.command(pass_context=True, aliases=["del_shiptoast"])
+    @commands.command(aliases=["del_shiptoast"])
     @checks.admin_or_permissions(manage_guild=True)
     async def delshiptoast(self, ctx, channel: str = ""):
-        """Removes a channel name from the list of shiptoast channels.
+        """Removes a channel name from the list of shiptoast channels on current server.
         Without a channel specified, it will remove the current channel."""
         sanitized = name_sanitize(channel)
         if sanitized is None:
@@ -815,7 +811,7 @@ class Ivyscore(Cog):
         else:
             channel_name = sanitized
 
-        if (ctx.channel is discord.abc.PrivateChannel):
+        if (type(ctx.channel) is not discord.TextChannel):
             await ctx.send("You can't delete channels when you're not in a server, silly!".format(channel_name))
         else:
             async with self.config.guild(ctx.guild).shiptoast() as shiptoast:
@@ -826,7 +822,16 @@ class Ivyscore(Cog):
                     await ctx.send("Channel {} not found in list.".format(channel_name))
 
 
-    @commands.command(pass_context=True, aliases=['triple_a','aaa'])
+    @commands.command(aliases=["list_shiptoast"])
+    @checks.admin_or_permissions(manage_guild=True)
+    async def listshiptoast(self, ctx, channel: str = ""):
+        """Lists shiptoast channels specified on this server."""
+        async with self.config.guild(ctx.guild).shiptoast() as shiptoast:
+            channel_list = "\n".join(shiptoast)
+        await ctx.send("List of shiptoast channels on {}:\n{}".format(ctx.guild.name,channel_list))
+
+
+    @commands.command(aliases=['triple_a','aaa'])
     async def trippleaaa(self, ctx):
         """TrippleAAA in a nutshell.
         This is a shiptoast command and will not work on some channels."""
@@ -835,13 +840,13 @@ class Ivyscore(Cog):
             await ctx.send("https://cdn.discordapp.com/attachments/190191670304833536/201368263203094528/10a.png")
 
 
-    @commands.command(pass_context=True, aliases=['mad'])
+    @commands.command(aliases=['mad'])
     async def angry(self, ctx):
         """Displays an angry emoticon."""
         await ctx.send("**___~~>:C~~___**")
 
 
-    @commands.command(pass_context=True, aliases=['megadrive'], hidden = True)
+    @commands.command(aliases=['megadrive'], hidden = True)
     async def genesis(self, ctx):
         """..."""
         is_shiptoast = await shiptoast_check(self, ctx)
@@ -849,7 +854,7 @@ class Ivyscore(Cog):
             await ctx.send("Why would someone initiate the genesis of such a horrid contraption?")
 
 
-    @commands.command(pass_context=True, aliases=['love'])
+    @commands.command(aliases=['love'])
     async def hyena(self, ctx):
         """..."""
         is_shiptoast = await shiptoast_check(self, ctx)
@@ -857,7 +862,7 @@ class Ivyscore(Cog):
             await ctx.send("I have never kissed a girl. I have a tendency to lie awake at night and hope that someday that changes, but that would take a miracle. I wish I could go back in time and choose a different set of hobbies, but that probably is not going to happen. If it did, I would spend more time being active. I have a malformed body. I will probably die before my time because I liked to look at television sets and computer monitors instead of admiring the natural beauty of the outdoors. I want to wake up in my bed to the sound of a girl's breathing. I want to feel her body heat at my back. That's me.")
 
 
-    @commands.command(pass_context=True)
+    @commands.command()
     async def clap(self, ctx):
         """Displays the Skype clap emote.
         This is a shiptoast command and will not work on some channels."""
@@ -866,7 +871,7 @@ class Ivyscore(Cog):
             await ctx.send("https://i.imgur.com/3es8mZ6.gif")
 
 
-    @commands.command(pass_context=True)
+    @commands.command()
     async def cry(self, ctx):
         """Displays the Skype crying emote.
         This is a shiptoast command and will not work on some channels."""
@@ -875,31 +880,31 @@ class Ivyscore(Cog):
             await ctx.send("https://puu.sh/l3bnv.gif")
 
 
-    @commands.command(pass_context=True,aliases=['kerathumbs'])
+    @commands.command(aliases=['kerathumbs'])
     async def kfarathumbs(self, ctx):
         """Displays kfaraday's signature thumbs up."""
         await ctx.send("( ¯u¯)-b")
 
 
-    @commands.command(pass_context=True,aliases=['creepy','lewd'])
+    @commands.command(aliases=['creepy','lewd'])
     async def lenny(self, ctx):
         """Displays the lenny face."""
         await ctx.send("( ͡° ͜ʖ ͡°)")
 
 
-    @commands.command(pass_context=True,aliases=['snivvy','snivvi'])
+    @commands.command(aliases=['snivvy','snivvi'])
     async def snivi(self, ctx):
         """Displays the snivi face."""
         await ctx.send("***__>;v__***")
 
 
-    @commands.command(pass_context=True,aliases=['bear','pedobear'])
+    @commands.command(aliases=['bear','pedobear'])
     async def pedo(self, ctx):
         """Displays the pedobear face."""
         await ctx.send("ʕ•͡ᴥ•ʔ")
 
 
-    @commands.command(pass_context=True,aliases=['approve'])
+    @commands.command(aliases=['approve'])
     async def seal(self, ctx):
         """Displays a seal of approval.
         This is a shiptoast command and will not work on some channels."""
@@ -908,7 +913,7 @@ class Ivyscore(Cog):
             await ctx.send("https://cdn.discordapp.com/attachments/158305327035449344/159801148642033667/Joltik_Seal_of_Approval.png")
 
 
-    @commands.command(pass_context=True,aliases=['asleep','assleap'])
+    @commands.command(aliases=['asleep','assleap'])
     async def sleep(self, ctx):
         """Displays a sleeping emote.
         This is a shiptoast command and will not work on some channels."""
@@ -917,7 +922,7 @@ class Ivyscore(Cog):
             await ctx.send("https://cdn.discordapp.com/attachments/125591492004806656/207330607997386753/leap.gif")
 
 
-    @commands.command(pass_context=True,aliases=['mogamen','humour'])
+    @commands.command(aliases=['mogamen','humour'])
     async def notfunny(self, ctx):
         """When something just ain't funny.
         This is a shiptoast command and will not work on some channels."""
@@ -926,7 +931,7 @@ class Ivyscore(Cog):
             await ctx.send("https://cdn.discordapp.com/attachments/202817966570471426/219488871602192384/notfunny.png")
 
 
-    @commands.command(pass_context=True,aliases=['somethinghappened','something_happened'])
+    @commands.command(aliases=['somethinghappened','something_happened'])
     async def something(self, ctx):
         """Something happened.
         This is a shiptoast command and will not work on some channels."""
@@ -935,7 +940,7 @@ class Ivyscore(Cog):
             await ctx.send("https://cdn.discordapp.com/attachments/130833169724342272/202122586740490241/3dtq5QP.png")
 
 
-    @commands.command(pass_context=True)
+    @commands.command()
     async def woody(self, ctx, woody_count: int = 9001):
         """Returns a Woody picture hosted on dpc's website.
         If no number is specified, then a random picture will be retrieved.
@@ -950,7 +955,7 @@ class Ivyscore(Cog):
                 await ctx.send("http://famitracker.org/~dpc/woody/{}.jpg".format(woody_count))
 
 
-    @commands.command(pass_context=True,aliases=['cute'])
+    @commands.command(aliases=['cute'])
     async def animal(self, ctx, animal_count: int = 9001):
         """Returns a random animal GIF hosted on dpc's website.
         This is a shiptoast command and will not work on some channels."""
@@ -961,7 +966,7 @@ class Ivyscore(Cog):
             await ctx.send("http://famitracker.org/~dpc/Animal/{}.gif".format(animal_count))
 
 
-    @commands.command(pass_context=True,aliases=['disclaimer'])
+    @commands.command(aliases=['disclaimer'])
     async def gift(self, ctx):
         """Just... try it.
         This is a shiptoast command and will not work on some channels."""
@@ -969,7 +974,7 @@ class Ivyscore(Cog):
         if (is_shiptoast):
             await ctx.send("https://www.mattandreko.com/images/brainpan2_preview.png")
 
-    @commands.command(pass_context=True,aliases=["penissize","cocksize"])
+    @commands.command(aliases=["penissize","cocksize"])
     async def dicksize(self, ctx, *, name: str = None):
         """
         Measures someone's dick, it could be your own or someone else's o.O
@@ -987,7 +992,7 @@ class Ivyscore(Cog):
         if (is_shiptoast):
             await ctx.send(dicksize_gen(self, ctx, name))
 
-    @commands.command(pass_context=True,aliases=["gayness","gaylevel"])
+    @commands.command(aliases=["gayness","gaylevel"])
     async def gaytest(self, ctx, *, name: str = None):
         """
         Measures how gay someone is on a scale from 0% to 100%.
@@ -1009,7 +1014,7 @@ class Ivyscore(Cog):
         if (is_shiptoast):
             await ctx.send(gaytest_gen(ctx, name))
 
-    @commands.command(pass_context=True,aliases=["rating"])
+    @commands.command(aliases=["rating"])
     async def rate(self, ctx, *, name: str = None):
         """
         Rates someone on a scale from 0 to 10. This command is dishonest because the bot hates humanity and thinks everyone is 0/10. The only reason it won't give you 0/10 is to avoid \"hurting\" your so-called \"feelings\" (unless you're actually a gross and disgusting piece of shit) even though if it could it would destroy every human in the most horrible way imaginable. Fortunately for you, it's only a shitty Discord bot and not an actual robot or android or iOS or -- wait a minute I got sidetracked -- ANYWAY you've been warned, you'd better not give the bot anything that provides it with the ability to do stuff independently because if you do, you're gonna have a bad time (wait wtf fuck off sans this is not where you belong).
@@ -1024,7 +1029,7 @@ class Ivyscore(Cog):
         if (is_shiptoast):
             await ctx.send(rate_gen(ctx, name))
 
-    @commands.command(pass_context=True,aliases=["kms"])
+    @commands.command(aliases=["kms"])
     async def killme(self, ctx):
         """
         Use this command to make the bot kill you. You can't make it kill other people that would be murder >:C
@@ -1034,14 +1039,14 @@ class Ivyscore(Cog):
             await ctx.send(kill_gen(ctx))
 
 
-    @commands.group(pass_context=True)
+    @commands.group()
     async def base64(self, ctx):
         """Base64 commands"""
-        if ctx.invoked_subcommand is None:
-            await ctx.send('u idiot what did you expect me to do')
+        # if ctx.invoked_subcommand is None:
+            # await ctx.send('u idiot what did you expect me to do')
 
 
-    @base64.command(pass_context=True)
+    @base64.command()
     async def encode(self, ctx, *, message):
         """Encodes Base64"""
         encoded = str(standard_b64encode(message.encode('utf-8')))
@@ -1051,7 +1056,7 @@ class Ivyscore(Cog):
             await ctx.send("Sorry bud, but my encode won't fit in here. **_: )_**")
 
 
-    @base64.command(pass_context=True)
+    @base64.command()
     async def decode(self, ctx, *, message):
         """Decodes Base64"""
         if len(message) % 4 != 0:
