@@ -543,7 +543,10 @@ class Ivyscore(Cog):
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send(random.choice(self.copypastas["kenm"]))
+            current_list = "kenm"
+            if (choice < 1) or (choice > len(copypastas[current_list])):
+                choice = randint(1, len(copypastas[current_list]))
+            await ctx.send(copypastas[current_list][choice-1])
 
 
     @commands.command(aliases=["adggfjggfafafafa"])
@@ -552,7 +555,10 @@ class Ivyscore(Cog):
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send("adnre: " + random.choice(self.copypastas["adnre"]))
+            current_list = "adnre"
+            if (choice < 1) or (choice > len(copypastas[current_list])):
+                choice = randint(1, len(copypastas[current_list]))
+            await ctx.send("adnre: " + copypastas[current_list][choice-1])
 
 
     @commands.command(hidden=True)
@@ -561,7 +567,10 @@ class Ivyscore(Cog):
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send("Brie: " + random.choice(self.copypastas["brie"]))
+            current_list = "brie"
+            if (choice < 1) or (choice > len(copypastas[current_list])):
+                choice = randint(1, len(copypastas[current_list]))
+            await ctx.send("Brie: " + copypastas[current_list][choice-1])
 
 
     @commands.command(hidden=True,
@@ -571,7 +580,10 @@ class Ivyscore(Cog):
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send("m9m: " + random.choice(self.copypastas["melon"]))
+            current_list = "melon"
+            if (choice < 1) or (choice > len(copypastas[current_list])):
+                choice = randint(1, len(copypastas[current_list]))
+            await ctx.send("Melon: "+ copypastas[current_list][choice-1])
 
 
     @commands.command(hidden=True)
@@ -580,7 +592,10 @@ class Ivyscore(Cog):
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send("Misty: " + random.choice(self.copypastas["misty"]))
+            current_list = "misty"
+            if (choice < 1) or (choice > len(copypastas[current_list])):
+                choice = randint(1, len(copypastas[current_list]))
+            await ctx.send("Misty: " + copypastas[current_list][choice-1])
 
 
     @commands.command(hidden=True, aliases=["sen-pi","senpee"])
@@ -589,7 +604,10 @@ class Ivyscore(Cog):
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send("sen-pi: " + random.choice(self.copypastas["senpi"]))
+            current_list = "senpi"
+            if (choice < 1) or (choice > len(copypastas[current_list])):
+                choice = randint(1, len(copypastas[current_list]))
+            await ctx.send("sen-pi: "+ copypastas[current_list][choice-1])
 
 
     @commands.command()
@@ -598,7 +616,10 @@ class Ivyscore(Cog):
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send(random.choice(self.copypastas["bulbaquotes"]))
+            current_list = "bulbaquotes"
+            if (choice < 1) or (choice > len(copypastas[current_list])):
+                choice = randint(1, len(copypastas[current_list]))
+            await ctx.send(copypastas[current_list][choice-1])
 
 
     @commands.command()
@@ -619,7 +640,10 @@ class Ivyscore(Cog):
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send(random.choice(self.copypastas["deward"]))
+            current_list = "deward"
+            if (choice < 1) or (choice > len(copypastas[current_list])):
+                choice = randint(1, len(copypastas[current_list]))
+            await ctx.send(copypastas[current_list][choice-1])
 
 
     @commands.command()
@@ -628,13 +652,10 @@ class Ivyscore(Cog):
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            current_command = "howard"
-            if (choice < 1) or choice > len(copypastas["howard"]):
-                choice = randint(1, len(copypastas["howard"]))
-            if :
-                await ctx.send("Sorry, that entry doesn't exist yet. The latest entry is number {}.".format(len(copypastas["merio"])))
-                return
-            await ctx.send(copypastas[][choice-1])
+            current_list = "howard"
+            if (choice < 1) or (choice > len(copypastas[current_list])):
+                choice = randint(1, len(copypastas[current_list]))
+            await ctx.send(copypastas[current_list][choice-1])
 
 
     @commands.command()
