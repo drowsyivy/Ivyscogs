@@ -1096,18 +1096,19 @@ class Ivyscore(Cog):
 
 
     async def on_message_without_command(self, message: discord.Message):
-        is_shiptoast = await shiptoast_check(self, message)
-        if (message.author != self.bot.user) and is_shiptoast:
-            if (message.content.lower().find("case in point") != -1):
-                await self.bot.send_message(message.channel, '\uD83D\uDC49\uD83D\uDCBC point in case')
-            elif (message.content.lower().find("noticable") != -1):
-                await self.bot.send_message(message.channel, 'notiwire >:C')
-            elif (message.content.lower().find("staph") != -1):
-                await self.bot.send_message(message.channel, 'ylococcus')
-            elif (message.content.lower().find("i could care less") != -1):
-                await self.bot.send_message(message.channel, 'so you actually care? ;)))')
-            elif (type(message.channel) is discord.TextChannel and message.channel.id != 222432649472376832):
-                if ("cum" in message.content.lower().split()):
-                    await self.bot.send_message(message.channel, 'oi mate watch your fuckin language')
-                elif (message.content.lower().startswith('ok')):
-                    await self.bot.send_message(message.channel, 'ok')
+        print(message.content)
+        # is_shiptoast = await shiptoast_check(self, message)
+        # if (message.author != self.bot.user) and is_shiptoast:
+        #     if (message.content.lower().find("case in point") != -1):
+        #         await self.bot.send_message(message.channel, '\uD83D\uDC49\uD83D\uDCBC point in case')
+        #     elif (message.content.lower().find("noticable") != -1):
+        #         await self.bot.send_message(message.channel, 'notiwire >:C')
+        #     elif (message.content.lower().find("staph") != -1):
+        #         await self.bot.send_message(message.channel, 'ylococcus')
+        #     elif (message.content.lower().find("i could care less") != -1):
+        #         await self.bot.send_message(message.channel, 'so you actually care? ;)))')
+        #     elif (type(message.channel) is discord.TextChannel and message.channel.id != 222432649472376832):
+        #         if ("cum" in message.content.lower().split()):
+        #             await self.bot.send_message(message.channel, 'oi mate watch your fuckin language')
+        #         elif (message.content.lower().startswith('ok')):
+        #             await self.bot.send_message(message.channel, 'ok')
