@@ -9,6 +9,8 @@ import asyncio
 
 from redbot.core import commands
 
+Cog: Any = getattr(commands, "Cog", object)
+
 
 def decToHex(dec: int):
     """Converts a decimal integer to a hex string."""
