@@ -1095,20 +1095,20 @@ class Ivyscore(Cog):
             await ctx.send("Sorry bud, but my decode won't fit in here. **_: )_**")
 
 
-    @asyncio.coroutine
-    def on_message(self, message):
-        is_shiptoast = yield from shiptoast_check(self, message)
-        if (message.author != self.bot.user) and (is_shiptoast):
-            if (message.content.lower().find("case in point") != -1):
-                yield from self.bot.send_message(message.channel, '\uD83D\uDC49\uD83D\uDCBC point in case')
-            elif (message.content.lower().find("noticable") != -1):
-                yield from self.bot.send_message(message.channel, 'notiwire >:C')
-            elif (message.content.lower().find("staph") != -1):
-                yield from self.bot.send_message(message.channel, 'ylococcus')
-            elif (message.content.lower().find("i could care less") != -1):
-                yield from self.bot.send_message(message.channel, 'so you actually care? ;)))')
-            elif (message.channel.id != "222432649472376832"):
-                if ("cum" in message.content.lower().split()):
-                    yield from self.bot.send_message(message.channel, 'oi mate watch your fuckin language')
-                elif (message.content.lower().startswith('ok')):
-                    yield from self.bot.send_message(message.channel, 'ok')
+    @commands.event
+    async def on_message(self, ctx):
+        is_shiptoast = await shiptoast_check(self, ctx)
+        if (ctx.author != self.bot.user) and is_shiptoast:
+            if (ctx.content.lower().find("case in point") != -1):
+                await self.bot.send_message(ctx.channel, '\uD83D\uDC49\uD83D\uDCBC point in case')
+            elif (ctx.content.lower().find("noticable") != -1):
+                await self.bot.send_message(ctx.channel, 'notiwire >:C')
+            elif (ctx.content.lower().find("staph") != -1):
+                await self.bot.send_message(ctx.channel, 'ylococcus')
+            elif (ctx.content.lower().find("i could care less") != -1):
+                await self.bot.send_message(ctx.channel, 'so you actually care? ;)))')
+            elif (type(ctx.channel) is discord.TextChannel and ctx.id != 222432649472376832):
+                if ("cum" in ctx.content.lower().split()):
+                    await self.bot.send_message(ctx.channel, 'oi mate watch your fuckin language')
+                elif (ctx.content.lower().startswith('ok')):
+                    await self.bot.send_message(ctx.channel, 'ok')
