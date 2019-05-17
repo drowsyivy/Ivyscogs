@@ -716,7 +716,7 @@ class Ivyscore(Cog):
                 await ctx.send(self.copypastas["sloth"][0])
             elif (choice.isnumeric()):
                 if int(choice) in range(1, len(self.copypastas["sloth"]) + 1):
-                    await ctx.send(self.copypastas["sloth"][choice-1])
+                    await ctx.send(self.copypastas["sloth"][int(choice)-1])
                 else:
                     await ctx.send(random.choice(self.copypastas["sloth"]))
             else:
