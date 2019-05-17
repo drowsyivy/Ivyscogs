@@ -29,7 +29,7 @@ Cog: Any = getattr(commands, "Cog", object)
 # Checks from Bulbaspot
 async def shiptoast_check(self, ctx):
     """Checks whether the message object is in a shiptoast chat."""
-    if type(ctx.channel) is discord.abc.PrivateChannel:
+    if type(ctx.channel) is not discord.TextChannel:
         return True
     else:
         async with self.config.guild(ctx.guild).shiptoast() as shiptoast: 
