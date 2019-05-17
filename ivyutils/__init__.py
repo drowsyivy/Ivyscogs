@@ -1,4 +1,4 @@
-from .ivyscore import Ivyutils
+from .ivyutils import Ivyutils
 
 
 def setup(bot):
