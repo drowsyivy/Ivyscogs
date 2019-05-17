@@ -544,9 +544,9 @@ class Ivyscore(Cog):
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
             current_list = "kenm"
-            if (choice < 1) or (choice > len(copypastas[current_list])):
-                choice = randint(1, len(copypastas[current_list]))
-            await ctx.send(copypastas[current_list][choice-1])
+            if (choice < 1) or (choice > len(self.copypastas[current_list])):
+                choice = randint(1, len(self.copypastas[current_list]))
+            await ctx.send(self.copypastas[current_list][choice-1])
 
 
     @commands.command(aliases=["adggfjggfafafafa"])
@@ -556,8 +556,8 @@ class Ivyscore(Cog):
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
             current_list = "adnre"
-            if (choice < 1) or (choice > len(copypastas[current_list])):
-                choice = randint(1, len(copypastas[current_list]))
+            if (choice < 1) or (choice > len(self.copypastas[current_list])):
+                choice = randint(1, len(self.copypastas[current_list]))
             await ctx.send("adnre: " + copypastas[current_list][choice-1])
 
 
@@ -568,8 +568,8 @@ class Ivyscore(Cog):
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
             current_list = "brie"
-            if (choice < 1) or (choice > len(copypastas[current_list])):
-                choice = randint(1, len(copypastas[current_list]))
+            if (choice < 1) or (choice > len(self.copypastas[current_list])):
+                choice = randint(1, len(self.copypastas[current_list]))
             await ctx.send("Brie: " + copypastas[current_list][choice-1])
 
 
@@ -581,8 +581,8 @@ class Ivyscore(Cog):
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
             current_list = "melon"
-            if (choice < 1) or (choice > len(copypastas[current_list])):
-                choice = randint(1, len(copypastas[current_list]))
+            if (choice < 1) or (choice > len(self.copypastas[current_list])):
+                choice = randint(1, len(self.copypastas[current_list]))
             await ctx.send("Melon: "+ copypastas[current_list][choice-1])
 
 
@@ -593,8 +593,8 @@ class Ivyscore(Cog):
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
             current_list = "misty"
-            if (choice < 1) or (choice > len(copypastas[current_list])):
-                choice = randint(1, len(copypastas[current_list]))
+            if (choice < 1) or (choice > len(self.copypastas[current_list])):
+                choice = randint(1, len(self.copypastas[current_list]))
             await ctx.send("Misty: " + copypastas[current_list][choice-1])
 
 
@@ -605,8 +605,8 @@ class Ivyscore(Cog):
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
             current_list = "senpi"
-            if (choice < 1) or (choice > len(copypastas[current_list])):
-                choice = randint(1, len(copypastas[current_list]))
+            if (choice < 1) or (choice > len(self.copypastas[current_list])):
+                choice = randint(1, len(self.copypastas[current_list]))
             await ctx.send("sen-pi: "+ copypastas[current_list][choice-1])
 
 
@@ -617,9 +617,9 @@ class Ivyscore(Cog):
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
             current_list = "bulbaquotes"
-            if (choice < 1) or (choice > len(copypastas[current_list])):
-                choice = randint(1, len(copypastas[current_list]))
-            await ctx.send(copypastas[current_list][choice-1])
+            if (choice < 1) or (choice > len(self.copypastas[current_list])):
+                choice = randint(1, len(self.copypastas[current_list]))
+            await ctx.send(self.copypastas[current_list][choice-1])
 
 
     @commands.command()
@@ -641,9 +641,9 @@ class Ivyscore(Cog):
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
             current_list = "deward"
-            if (choice < 1) or (choice > len(copypastas[current_list])):
-                choice = randint(1, len(copypastas[current_list]))
-            await ctx.send(copypastas[current_list][choice-1])
+            if (choice < 1) or (choice > len(self.copypastas[current_list])):
+                choice = randint(1, len(self.copypastas[current_list]))
+            await ctx.send(self.copypastas[current_list][choice-1])
 
 
     @commands.command()
@@ -653,9 +653,9 @@ class Ivyscore(Cog):
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
             current_list = "howard"
-            if (choice < 1) or (choice > len(copypastas[current_list])):
-                choice = randint(1, len(copypastas[current_list]))
-            await ctx.send(copypastas[current_list][choice-1])
+            if (choice < 1) or (choice > len(self.copypastas[current_list])):
+                choice = randint(1, len(self.copypastas[current_list]))
+            await ctx.send(self.copypastas[current_list][choice-1])
 
 
     @commands.command()
@@ -684,11 +684,11 @@ class Ivyscore(Cog):
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
             if choice < 1:
-                choice = randint(1, len(copypastas["merio"]))
-            if choice > len(copypastas["merio"]):
-                await ctx.send("Sorry, that entry doesn't exist yet. The latest entry is number {}.".format(len(copypastas["merio"])))
+                choice = randint(1, len(self.copypastas["merio"]))
+            if choice > len(self.copypastas["merio"]):
+                await ctx.send("Sorry, that entry doesn't exist yet. The latest entry is number {}.".format(len(self.copypastas["merio"])))
                 return
-            await ctx.send(copypastas["merio"][choice-1])
+            await ctx.send(self.copypastas["merio"][choice-1])
 
 
     @commands.command(aliases=["ivy"])
@@ -699,21 +699,26 @@ class Ivyscore(Cog):
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
             if choice < 1:
-                choice = randint(1, len(copypastas["ivyslog"]))
-            elif choice > len(copypastas["ivyslog"]):
-                await ctx.send("Sorry, that entry doesn't exist yet. The latest entry is number {}.".format(len(copypastas["ivyslog"])))
+                choice = randint(1, len(self.copypastas["ivyslog"]))
+            elif choice > len(self.copypastas["ivyslog"]):
+                await ctx.send("Sorry, that entry doesn't exist yet. The latest entry is number {}.".format(len(self.copypastas["ivyslog"])))
                 return
-            await ctx.send(copypastas["ivyslog"][choice-1])
+            await ctx.send(self.copypastas["ivyslog"][choice-1])
 
 
     @commands.command()
-    async def sloth(self, ctx, original: str = "no"):
+    async def sloth(self, ctx, choice: str = "random"):
         """Sloth quote generator
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            if (original[0] in ['o','y']):
-                await ctx.send(copypastas["sloth"][0])
+            if (choice[0] in ['o','y']):
+                await ctx.send(self.copypastas["sloth"][0])
+            elif (choice.isnumeric()):
+                if int(choice) in range(1, len(self.copypastas["sloth"] + 1)):
+                    await ctx.send(self.copypastas["sloth"][choice-1])
+                else:
+                    await ctx.send(random.choice(self.copypastas["sloth"]))
             else:
                 await ctx.send(random.choice(self.copypastas["sloth"]))
 
