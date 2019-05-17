@@ -524,7 +524,7 @@ class Ivyscore(Cog):
         }
         self.config.register_global(**default_global)
         self.config.register_guild(**default_guild)
-        with open(str(bundled_data_path(self)) + '/copypastas.json')s as copypasta_file:    
+        with open(str(bundled_data_path(self)) + '/copypastas.json') as copypasta_file:    
             self.copypastas = json.load(copypasta_file)
 
 
