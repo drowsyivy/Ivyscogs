@@ -8,6 +8,7 @@
 import asyncio
 
 from redbot.core import commands
+from typing import Any
 
 Cog: Any = getattr(commands, "Cog", object)
 
