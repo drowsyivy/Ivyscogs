@@ -1,6 +1,6 @@
-from .ivyutils import Ivyutils
+from .ivyscore import Ivyutils
 
 
 def setup(bot):
-    n = Ivyutils()
-bot.add_cog(n)
+    n = Ivyutils(bot)
+    bot.add_cog(n)
