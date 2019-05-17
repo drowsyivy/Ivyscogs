@@ -1,7 +1,7 @@
 # Adds shiptoast commands.
 # LICENSE: This module is licenced under Apache License 2.0
 # @category   Tools
-# @copyright  Copyright (c) 2018 ivy
+# @copyright  Copyright (c) 2018-2019 ivy
 # @version    1.2
 # @author     ivy
 
