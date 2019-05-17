@@ -558,7 +558,7 @@ class Ivyscore(Cog):
             current_list = "adnre"
             if (choice < 1) or (choice > len(self.copypastas[current_list])):
                 choice = randint(1, len(self.copypastas[current_list]))
-            await ctx.send("adnre: " + copypastas[current_list][choice-1])
+            await ctx.send("adnre: " + self.copypastas[current_list][choice-1])
 
 
     @commands.command(hidden=True)
@@ -570,7 +570,7 @@ class Ivyscore(Cog):
             current_list = "brie"
             if (choice < 1) or (choice > len(self.copypastas[current_list])):
                 choice = randint(1, len(self.copypastas[current_list]))
-            await ctx.send("Brie: " + copypastas[current_list][choice-1])
+            await ctx.send("Brie: " + self.copypastas[current_list][choice-1])
 
 
     @commands.command(hidden=True,
@@ -583,7 +583,7 @@ class Ivyscore(Cog):
             current_list = "melon"
             if (choice < 1) or (choice > len(self.copypastas[current_list])):
                 choice = randint(1, len(self.copypastas[current_list]))
-            await ctx.send("Melon: "+ copypastas[current_list][choice-1])
+            await ctx.send("Melon: "+ self.copypastas[current_list][choice-1])
 
 
     @commands.command(hidden=True)
@@ -595,7 +595,7 @@ class Ivyscore(Cog):
             current_list = "misty"
             if (choice < 1) or (choice > len(self.copypastas[current_list])):
                 choice = randint(1, len(self.copypastas[current_list]))
-            await ctx.send("Misty: " + copypastas[current_list][choice-1])
+            await ctx.send("Misty: " + self.copypastas[current_list][choice-1])
 
 
     @commands.command(hidden=True, aliases=["sen-pi","senpee"])
@@ -607,7 +607,7 @@ class Ivyscore(Cog):
             current_list = "senpi"
             if (choice < 1) or (choice > len(self.copypastas[current_list])):
                 choice = randint(1, len(self.copypastas[current_list]))
-            await ctx.send("sen-pi: "+ copypastas[current_list][choice-1])
+            await ctx.send("sen-pi: "+ self.copypastas[current_list][choice-1])
 
 
     @commands.command()
