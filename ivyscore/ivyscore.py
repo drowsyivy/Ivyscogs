@@ -1095,7 +1095,8 @@ class Ivyscore(Cog):
             await ctx.send("Sorry bud, but my decode won't fit in here. **_: )_**")
 
 
-    async def on_message(self, ctx):
+    @asyncio.coroutine
+    def on_message(self, ctx):
         is_shiptoast = await shiptoast_check(self, ctx)
         if (ctx.author != self.bot.user) and is_shiptoast:
             if (ctx.content.lower().find("case in point") != -1):
