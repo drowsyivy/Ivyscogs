@@ -706,13 +706,13 @@ class Ivyscore(Cog):
             await ctx.send(copypastas["ivyslog"][choice-1])
 
 
-    @commands.group()
+    @commands.command()
     async def sloth(self, ctx, original: str = "no"):
         """Sloth quote generator
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            if (original[0] is in ['o','y']):
+            if (original[0] in ['o','y']):
                 await ctx.send(copypastas["sloth"][0])
             else:
                 await ctx.send(random.choice(self.copypastas["sloth"]))
