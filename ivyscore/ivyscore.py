@@ -537,8 +537,8 @@ class Ivyscore(Cog):
             await ctx.send(zalgo_gen(message))
 
 
-    @commands.group(aliases=["ken_m"])
-    async def kenm(self, ctx):
+    @commands.command(aliases=["ken_m"])
+    async def kenm(self, ctx, choice: int = 0):
         """kenm screenshot poster.
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
@@ -546,8 +546,8 @@ class Ivyscore(Cog):
             await ctx.send(random.choice(self.copypastas["kenm"]))
 
 
-    @commands.group(aliases=["adggfjggfafafafa"])
-    async def adnre(self, ctx):
+    @commands.command(aliases=["adggfjggfafafafa"])
+    async def adnre(self, ctx, choice: int = 0):
         """adnre's quote generator.
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
@@ -555,8 +555,8 @@ class Ivyscore(Cog):
             await ctx.send("adnre: " + random.choice(self.copypastas["adnre"]))
 
 
-    @commands.group(hidden=True)
-    async def brie(self, ctx):
+    @commands.command(hidden=True)
+    async def brie(self, ctx, choice: int = 0):
         """Brie's quote generator.
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
@@ -564,9 +564,9 @@ class Ivyscore(Cog):
             await ctx.send("Brie: " + random.choice(self.copypastas["brie"]))
 
 
-    @commands.group(hidden=True,
+    @commands.command(hidden=True,
                     aliases=["m9m","melonadem","meong"])
-    async def melon(self, ctx):
+    async def melon(self, ctx, choice: int = 0):
         """Melon's quote generator.
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
@@ -574,8 +574,8 @@ class Ivyscore(Cog):
             await ctx.send("m9m: " + random.choice(self.copypastas["melon"]))
 
 
-    @commands.group(hidden=True)
-    async def misty(self, ctx):
+    @commands.command(hidden=True)
+    async def misty(self, ctx, choice: int = 0):
         """Misty's quote generator.
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
@@ -583,8 +583,8 @@ class Ivyscore(Cog):
             await ctx.send("Misty: " + random.choice(self.copypastas["misty"]))
 
 
-    @commands.group(hidden=True, aliases=["sen-pi","senpee"])
-    async def senpi(self, ctx):
+    @commands.command(hidden=True, aliases=["sen-pi","senpee"])
+    async def senpi(self, ctx, choice: int = 0):
         """sen-pi's quote generator
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
@@ -592,8 +592,8 @@ class Ivyscore(Cog):
             await ctx.send("sen-pi: " + random.choice(self.copypastas["senpi"]))
 
 
-    @commands.group()
-    async def bulba(self, ctx):
+    @commands.command()
+    async def bulba(self, ctx, choice: int = 0):
         """Bulba's quote generator
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
@@ -614,7 +614,7 @@ class Ivyscore(Cog):
 
 
     @commands.command()
-    async def deward(self, ctx):
+    async def deward(self, ctx, choice: int = 0):
         """Deward RP quote generator
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
@@ -623,12 +623,18 @@ class Ivyscore(Cog):
 
 
     @commands.command()
-    async def howard(self, ctx):
+    async def howard(self, ctx, choice: int = 0):
         """Howard RP quote generator
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            await ctx.send(random.choice(self.copypastas["howard"]))
+            current_command = "howard"
+            if (choice < 1) or choice > len(copypastas["howard"]):
+                choice = randint(1, len(copypastas["howard"]))
+            if :
+                await ctx.send("Sorry, that entry doesn't exist yet. The latest entry is number {}.".format(len(copypastas["merio"])))
+                return
+            await ctx.send(copypastas[][choice-1])
 
 
     @commands.command()
@@ -673,29 +679,22 @@ class Ivyscore(Cog):
         if (is_shiptoast):
             if choice < 1:
                 choice = randint(1, len(copypastas["ivyslog"]))
-            if choice > len(copypastas["ivyslog"]):
+            elif choice > len(copypastas["ivyslog"]):
                 await ctx.send("Sorry, that entry doesn't exist yet. The latest entry is number {}.".format(len(copypastas["ivyslog"])))
                 return
             await ctx.send(copypastas["ivyslog"][choice-1])
 
 
     @commands.group()
-    async def sloth(self, ctx):
+    async def sloth(self, ctx, original: str = "no"):
         """Sloth quote generator
         This is a shiptoast command and will not work on some channels."""
         is_shiptoast = await shiptoast_check(self, ctx)
         if (is_shiptoast):
-            if ctx.invoked_subcommand is None:
+            if (original[0] is in ['o','y']):
+                await ctx.send(copypastas["sloth"][0])
+            else:
                 await ctx.send(random.choice(self.copypastas["sloth"]))
-    
-
-    @sloth.command()
-    async def original(self, ctx):
-        """Sloth's original!
-        This is a shiptoast command and will not work on some channels."""
-        is_shiptoast = await shiptoast_check(self, ctx)
-        if (is_shiptoast):
-            await ctx.send(copypastas["sloth"][0])
 
 
     @commands.command(aliases=["nomanssky","nomansky"])
