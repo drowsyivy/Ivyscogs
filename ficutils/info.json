@@ -1,0 +1,10 @@
+{
+  "author" : ["drowsyivy", "RedQwyll"],
+  "bot_version": [3,1,1],
+  "install_msg" : "Congrats on installing ficutils, a completely useless plugin! You sure you don't need some professional `[p]help`?",
+  "short" : "Adds fic-related utilities.",
+  "description" : "Adds fic-related utilities that aid with searching and indexing.",
+  "tags" : ["tagging","utilities"],
+  "requirements" : ["bs4"],
+  "hidden" : false
+}
