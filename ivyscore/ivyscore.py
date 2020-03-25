@@ -17,7 +17,6 @@ from random import randint
 from string import ascii_letters, digits
 
 import discord.enums
-
 from redbot.core import Config, checks, commands
 from redbot.core.data_manager import bundled_data_path
 from redbot.core.data_manager import cog_data_path
@@ -1095,19 +1094,22 @@ class Ivyscore(Cog):
             await ctx.send("Sorry bud, but my decode won't fit in here. **_: )_**")
 
 
-    async def on_message(self, ctx):
-        is_shiptoast = await shiptoast_check(self, ctx)
-        if (ctx.author != self.bot.user) and is_shiptoast:
-            if (ctx.content.lower().find("case in point") != -1):
-                await self.bot.send_message(ctx.channel, '\uD83D\uDC49\uD83D\uDCBC point in case')
-            elif (ctx.content.lower().find("noticable") != -1):
-                await self.bot.send_message(ctx.channel, 'notiwire >:C')
-            elif (ctx.content.lower().find("staph") != -1):
-                await self.bot.send_message(ctx.channel, 'ylococcus')
-            elif (ctx.content.lower().find("i could care less") != -1):
-                await self.bot.send_message(ctx.channel, 'so you actually care? ;)))')
-            elif (type(ctx.channel) is discord.TextChannel and ctx.id != 222432649472376832):
-                if ("cum" in ctx.content.lower().split()):
-                    await self.bot.send_message(ctx.channel, 'oi mate watch your fuckin language')
-                elif (ctx.content.lower().startswith('ok')):
-                    await self.bot.send_message(ctx.channel, 'ok')
+    @commands.Cog.listener()
+    async def on_message_without_command(self, message: discord.Message):
+        is_shiptoast = await shiptoast_check(self, message)
+        if (message.author != self.bot.user) and is_shiptoast:
+            if (message.content.lower().find("case in point") != -1):
+                await message.channel.send('\uD83D\uDC49\uD83D\uDCBC point in case')
+            elif (message.content.lower() == 'f'):
+                await message.channel.send('f')
+            elif (message.content.lower().find("noticable") != -1):
+                await message.channel.send('notiwire >:C')
+            elif (message.content.lower().find("staph") != -1):
+                await message.channel.send('ylococcus')
+            elif (message.content.lower().find("i could care less") != -1):
+                await message.channel.send('so you actually care? ;)))')
+            elif (type(message.channel) is discord.TextChannel and message.channel.id != 222432649472376832):
+                if ("cum" in message.content.lower().split()):
+                    await message.channel.send('oi mate watch your fuckin language')
+                elif (message.content.lower().startswith('ok')):
+                    await message.channel.send('ok')
