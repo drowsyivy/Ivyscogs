@@ -17,7 +17,6 @@ from random import randint
 from string import ascii_letters, digits
 
 import discord.enums
-
 from redbot.core import Config, checks, commands
 from redbot.core.data_manager import bundled_data_path
 from redbot.core.data_manager import cog_data_path
@@ -1101,6 +1100,8 @@ class Ivyscore(Cog):
         if (message.author != self.bot.user) and is_shiptoast:
             if (message.content.lower().find("case in point") != -1):
                 await message.channel.send('\uD83D\uDC49\uD83D\uDCBC point in case')
+            elif (message.content.lower() == 'f'):
+                await message.channel.send('f')
             elif (message.content.lower().find("noticable") != -1):
                 await message.channel.send('notiwire >:C')
             elif (message.content.lower().find("staph") != -1):
