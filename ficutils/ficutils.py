@@ -402,12 +402,14 @@ def metadata_ffn(soup, site: str = 'ffn'):
     
     # --- updated
     # if there is only 1 chapter, equal to publish date
-    if result['chapter'] == 1:
-        updated = published
-    else: 
+    #if result['chapter'] == 1:
+    #    updated = published
+    try: 
         updated, mishmash = regex_extract('Updated: ', '[\w\s/]+', mishmash)
         updated = updated.strip()
         updated = ffn_date_parser(updated)
+    except:
+        updated = published
         
     result['updated'] = updated
     
@@ -419,7 +421,7 @@ def metadata_ffn(soup, site: str = 'ffn'):
     for x in xc_mm:
         if '/u/' in x['href']:
             author = x.getText()
-            author_id = 'ffn-' + x['href'].split('/')[2]
+            author_id = site + '-' + x['href'].split('/')[2]
     
     result['author'] = [{
         'user_name' : author,
