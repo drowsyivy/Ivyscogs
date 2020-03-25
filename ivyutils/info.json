@@ -1,6 +1,6 @@
 {
   "author" : ["drowsyivy"],
-  "bot_version": [3,0,1],
+  "bot_version": [3,1,1],
   "install_msg" : "Congrats on installing Ivyutils, a completely useless plugin! You sure you don't need some professional `[p]help`?",
   "short" : "Random utility commands",
   "description" : "Provides various commands for calculating assorted variables.",
